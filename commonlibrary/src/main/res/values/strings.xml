@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CommonLibrary</string>
+    <string name="title_prompt">提示</string>
+    <string name="content_loading">加载中...</string>
+    <string name="date_years_ago">年前</string>
+    <string name="date_months_ago">个月前</string>
+    <string name="date_days_ago">天前</string>
+    <string name="date_hours_ago">个小时前</string>
+    <string name="date_minutes_ago">分钟前</string>
+    <string name="date_just_now">刚刚</string>
+</resources>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/main_margin_16"
+    android:layout_marginRight="@dimen/main_margin_16"
+    android:paddingTop="@dimen/main_margin_16">
+
+    <ImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="@dimen/dimen_40"
+        android:layout_height="@dimen/dimen_40" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_10"
+        android:layout_marginTop="@dimen/dimen_12"
+        android:layout_toRightOf="@id/iv_avatar"
+        android:textColor="@color/color_999"
+        android:textSize="@dimen/dimen_14" />
+
+    <TextView
+        android:id="@+id/tv_hot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_4"
+        android:layout_marginTop="@dimen/dimen_14"
+        android:layout_toRightOf="@id/tv_name"
+        android:text="@string/prompt_hot_comment"
+        android:textColor="@color/colorAccentLight"
+        android:textSize="@dimen/dimen_12" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/dimen_14"
+        android:textColor="@color/color_999"
+        android:textSize="@dimen/dimen_12" />
+
+    <TextView
+        android:id="@+id/tv_replay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_avatar"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:background="@drawable/shape_comment_replay_bg"
+        android:gravity="center_vertical"
+        android:lineSpacingMultiplier="1.2"
+        android:padding="@dimen/dimen_10"
+        android:textColor="@color/color_333"
+        android:textSize="@dimen/dimen_14" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_replay"
+        android:layout_marginBottom="@dimen/main_margin_16"
+        android:layout_marginTop="@dimen/main_margin_16"
+        android:lineSpacingMultiplier="1.2"
+        android:textColor="@color/color_333"
+        android:textSize="@dimen/dimen_14" />
+
+    <TextView
+        android:id="@+id/tv_praise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/tv_content"
+        android:drawablePadding="@dimen/dimen_4"
+        android:drawableRight="@drawable/comment_laud"
+        android:gravity="center"
+        android:textColor="@color/color_999"
+        android:textSize="@dimen/dimen_12" />
+
+    <ImageView
+        android:id="@+id/iv_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_content"
+        android:layout_marginRight="@dimen/main_margin_16"
+        android:layout_toLeftOf="@id/tv_praise"
+        android:src="@drawable/comment_image" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_0.5"
+        android:layout_below="@id/tv_praise"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:background="@color/color_ccc" />
+</RelativeLayout>

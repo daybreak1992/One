@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions' //扩展插件
+apply plugin: 'kotlin-kapt'  //kapt3插件
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    defaultConfig {
+        applicationId "com.tanghong.joker"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        vectorDrawables.useSupportLibrary = true
+
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "mips", "mips64", "x86", "x86_64"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            java.srcDirs = ["src/main/java", "src/main/data"]
+        }
+    }
+}
+
+dependencies {
+    compile project(':commonlibrary')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //v7
+    compile rootProject.ext.supportLibs
+    //retrofit
+    compile rootProject.ext.networkLibs
+    //kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.ext.kotlin.kotlinVersion"
+    compile "org.jetbrains.anko:anko:$rootProject.ext.kotlin.ankoVersion"
+    //rx
+    compile rootProject.ext.rxJavaLibs
+    compile rootProject.ext.otherLibs
+    // APT dependencies(Kotlin内置的注解处理器)
+    kapt rootProject.ext.annotationProcessorLibs
+    //glide
+    compile(rootProject.ext.glideOkhttp) {
+        exclude group: 'glide-parent'
+    }
+    //leakcanary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/main_margin_16"
+        android:text="@string/title_date"
+        android:textColor="@color/color_333"
+        android:textSize="@dimen/dimen_20" />
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title"
+        android:layout_centerHorizontal="true" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:paddingBottom="@dimen/main_margin_16"
+        android:paddingRight="@dimen/main_margin_16">
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="@dimen/dimen_80"
+            android:layout_height="@dimen/dimen_36"
+            android:background="@drawable/selector_btn_accent"
+            android:text="@string/btn_confirm"
+            android:textColor="@color/white" />
+    </FrameLayout>
+</RelativeLayout>

@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">One</string>
+
+    <string name="drawer_open">打开</string>
+    <string name="drawer_close">关闭</string>
+
+    <string name="title_home">首页</string>
+    <string name="title_search">发现</string>
+    <string name="title_message">消息</string>
+    <string name="title_my">我的</string>
+    <string name="title_prompt">提示</string>
+    <string name="title_date">日期</string>
+    <string name="title_serial">连载</string>
+    <string name="title_questions_answers">问答</string>
+    <string name="title_movie">影视</string>
+    <string name="title_music">音乐</string>
+    <string name="title_answer">答</string>
+    <string name="title_read">阅读</string>
+
+    <string name="prompt_exit_app">再按一次退出程序</string>
+    <string name="prompt_hot_comment">(热门评论)</string>
+
+    <string name="content_loading">加载中...</string>
+
+    <string name="btn_confirm">确定</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_find">发现</string>
+    <string name="title_category_navigation">分类导航</string>
+</resources>
