@@ -2,10 +2,7 @@ package source.remote
 
 import http.RetrofitManager
 import io.reactivex.Flowable
-import model.CommentRoot
-import model.Detail
-import model.One
-import model.Result
+import model.*
 import source.TasksDataSource
 
 /**
@@ -42,4 +39,10 @@ class TasksRemoteDataSource private constructor() : TasksDataSource {
 
     override fun getDetailComment(category: String, id: String, lastCommentId: String): Flowable<Result<CommentRoot>>
             = RetrofitManager.api.getDetailComments(category, id, lastCommentId)
+
+    override fun getBanners(type: String, last_id: String): Flowable<Result<List<Banner>>>
+            = RetrofitManager.api.getBanners(type, last_id)
+
+    override fun getHotAuthors(): Flowable<Result<List<User>>>
+            = RetrofitManager.api.getHotAuthors()
 }

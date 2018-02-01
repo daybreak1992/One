@@ -1,10 +1,7 @@
 package source
 
 import io.reactivex.Flowable
-import model.CommentRoot
-import model.Detail
-import model.One
-import model.Result
+import model.*
 
 /**
  * <pre>
@@ -21,4 +18,8 @@ interface TasksDataSource {
     fun getDetail(category: String, id: String, source_id: String): Flowable<Result<Detail>>
 
     fun getDetailComment(category: String, id: String, lastCommentId: String): Flowable<Result<CommentRoot>>
+
+    fun getBanners(type: String, last_id: String): Flowable<Result<List<Banner>>>
+
+    fun getHotAuthors(): Flowable<Result<List<User>>>
 }

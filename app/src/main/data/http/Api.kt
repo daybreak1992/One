@@ -1,10 +1,7 @@
 package http
 
 import io.reactivex.Flowable
-import model.CommentRoot
-import model.Detail
-import model.One
-import model.Result
+import model.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -29,4 +26,10 @@ interface Api {
     @GET("comment/praiseandtime/{category}/{id}/{lastCommentId}")
     fun getDetailComments(@Path("category") category: String, @Path("id") id: String,
                           @Path("lastCommentId") lastCommentId: String): Flowable<Result<CommentRoot>>
+
+    @GET("banner/list/{type}")
+    fun getBanners(@Path("type") type: String, @Query("last_id") last_id: String): Flowable<Result<List<Banner>>>
+
+    @GET("author/hot")
+    fun getHotAuthors(): Flowable<Result<List<User>>>
 }

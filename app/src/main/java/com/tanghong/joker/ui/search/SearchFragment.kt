@@ -7,7 +7,11 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener
 import com.tanghong.commonlibrary.base.BaseFragment
 import com.tanghong.joker.R
+import http.ApiException
 import kotlinx.android.synthetic.main.fragment_search.*
+import model.Banner
+import model.Result
+import model.User
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -65,6 +69,18 @@ class SearchFragment : BaseFragment<SearchPresenter>(), SearchContract.View {
 
     fun onSearchClick() {
         toast("searchClick")
+    }
+
+    override fun setBanners(isRefresh: Boolean, type: String, result: Result<List<Banner>>) {
+
+    }
+
+    override fun setHotAuthors(result: Result<List<User>>) {
+
+    }
+
+    override fun setError(e: ApiException) {
+
     }
 
     override fun onDestroy() {

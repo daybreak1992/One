@@ -2,6 +2,10 @@ package com.tanghong.joker.ui.search
 
 import com.tanghong.commonlibrary.base.IBaseView
 import com.tanghong.commonlibrary.base.IPresenter
+import http.ApiException
+import model.Banner
+import model.Result
+import model.User
 
 /**
  * <pre>
@@ -15,9 +19,17 @@ interface SearchContract {
 
     interface View : IBaseView {
 
+        fun setBanners(isRefresh: Boolean, type: String, result: Result<List<Banner>>)
+
+        fun setHotAuthors(result: Result<List<User>>)
+
+        fun setError(e: ApiException)
     }
 
     interface Presenter : IPresenter<View> {
 
+        fun loadBanners(isRefresh: Boolean, type: String, last_id: String)
+
+        fun getHotAuthors()
     }
 }

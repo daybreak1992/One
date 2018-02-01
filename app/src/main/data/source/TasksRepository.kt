@@ -1,10 +1,7 @@
 package source
 
 import io.reactivex.Flowable
-import model.CommentRoot
-import model.Detail
-import model.One
-import model.Result
+import model.*
 import source.remote.TasksRemoteDataSource
 
 /**
@@ -35,4 +32,10 @@ class TasksRepository(private val tasksRemoteDataSource: TasksRemoteDataSource) 
 
     override fun getDetailComment(category: String, id: String, lastCommentId: String): Flowable<Result<CommentRoot>>
             = tasksRemoteDataSource.getDetailComment(category, id, lastCommentId)
+
+    override fun getBanners(type: String, last_id: String): Flowable<Result<List<Banner>>>
+            = tasksRemoteDataSource.getBanners(type, last_id)
+
+    override fun getHotAuthors(): Flowable<Result<List<User>>>
+            = tasksRemoteDataSource.getHotAuthors()
 }
