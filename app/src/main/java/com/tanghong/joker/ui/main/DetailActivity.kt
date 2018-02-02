@@ -4,6 +4,7 @@ import android.graphics.PixelFormat
 import android.support.v7.widget.LinearLayoutManager
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
+import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener
 import com.tanghong.commonlibrary.base.BaseActivity
 import com.tanghong.joker.R
@@ -42,6 +43,7 @@ class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
         rv_detail.layoutManager = LinearLayoutManager(this)
         detailAdapter = DetailAdapter(detailList)
         rv_detail.adapter = detailAdapter
+        srl_detail.setRefreshHeader(ClassicsHeader(this))
         srl_detail.setRefreshFooter(ClassicsFooter(this))
 
         toolBar.setNavigationOnClickListener {

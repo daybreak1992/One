@@ -30,12 +30,12 @@ class SearchPresenter : BasePresenter<SearchContract.View>(), SearchContract.Pre
                         }
 
                         override fun onError(e: ApiException) {
-                            rootView?.setError(e)
+                            rootView?.setError(isRefresh, e)
                         }
                     }))
     )
 
-    override fun getHotAuthors()
+    override fun loadHotAuthors()
             = addSubscription(
             createRepository().getHotAuthors()
                     .compose(RxUtils.composeIo())
@@ -45,7 +45,7 @@ class SearchPresenter : BasePresenter<SearchContract.View>(), SearchContract.Pre
                         }
 
                         override fun onError(e: ApiException) {
-                            rootView?.setError(e)
+                            rootView?.setError(true, e)
                         }
                     }))
     )

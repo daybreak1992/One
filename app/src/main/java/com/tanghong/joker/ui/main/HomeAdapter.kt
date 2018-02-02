@@ -1,13 +1,14 @@
 package com.tanghong.joker.ui.main
 
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions.bitmapTransform
+import android.widget.ImageView
+import com.bumptech.glide.request.RequestOptions
 import com.tanghong.commonlibrary.base.adapter.BaseAdapter
 import com.tanghong.commonlibrary.base.adapter.BaseViewHolder
 import com.tanghong.commonlibrary.base.adapter.MultiType
 import com.tanghong.commonlibrary.utils.ScreenUtils
 import com.tanghong.commonlibrary.utils.TimeDateUtils
 import com.tanghong.joker.R
+import com.tanghong.joker.glide
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import model.Content
 
@@ -29,9 +30,7 @@ class HomeAdapter(datas: ArrayList<Content>) : BaseAdapter<Content>(datas,
                 Content.movie -> R.layout.layout_home_item_movie
                 Content.music -> R.layout.layout_home_item_music
                 Content.radio -> R.layout.layout_home_item_radio
-                else -> {
-                    R.layout.layout_home_item_default
-                }
+                else -> R.layout.layout_home_item_default
             }
         }) {
 
@@ -43,7 +42,7 @@ class HomeAdapter(datas: ArrayList<Content>) : BaseAdapter<Content>(datas,
                     holder.setText(R.id.tv_title_author, "$title/$pic_info")
                     holder.setText(R.id.tv_forward, forward)
                     holder.setText(R.id.tv_words_info, words_info)
-                    Glide.with(context).load(img_url).into(holder.getView(R.id.iv_cover))
+                    holder.getView<ImageView>(R.id.iv_cover).glide(img_url)
                 }
                 Content.article -> {
                     if (tag_list.isEmpty()) {
@@ -56,7 +55,7 @@ class HomeAdapter(datas: ArrayList<Content>) : BaseAdapter<Content>(datas,
                     holder.setText(R.id.tv_forward, forward)
                     holder.setText(R.id.tv_like_count, like_count)
                     holder.setText(R.id.tv_post_date, TimeDateUtils.formatTime(post_date))
-                    Glide.with(context).load(img_url).into(holder.getView(R.id.iv_cover))
+                    holder.getView<ImageView>(R.id.iv_cover).glide(img_url)
                 }
                 Content.serial -> {
                     holder.setText(R.id.tv_tag_title, "— ${context.getString(R.string.title_serial)} —")
@@ -65,7 +64,7 @@ class HomeAdapter(datas: ArrayList<Content>) : BaseAdapter<Content>(datas,
                     holder.setText(R.id.tv_forward, forward)
                     holder.setText(R.id.tv_like_count, like_count)
                     holder.setText(R.id.tv_post_date, TimeDateUtils.formatTime(post_date))
-                    Glide.with(context).load(img_url).into(holder.getView(R.id.iv_cover))
+                    holder.getView<ImageView>(R.id.iv_cover).glide(img_url)
                 }
                 Content.questions_answers -> {
                     holder.setText(R.id.tv_tag_title, "— ${context.getString(R.string.title_questions_answers)} —")
@@ -74,7 +73,7 @@ class HomeAdapter(datas: ArrayList<Content>) : BaseAdapter<Content>(datas,
                     holder.setText(R.id.tv_forward, forward)
                     holder.setText(R.id.tv_like_count, like_count)
                     holder.setText(R.id.tv_post_date, TimeDateUtils.formatTime(post_date))
-                    Glide.with(context).load(img_url).into(holder.getView(R.id.iv_cover))
+                    holder.getView<ImageView>(R.id.iv_cover).glide(img_url)
                 }
                 Content.movie -> {
                     holder.setText(R.id.tv_tag_title, "— ${context.getString(R.string.title_movie)} —")
@@ -84,7 +83,7 @@ class HomeAdapter(datas: ArrayList<Content>) : BaseAdapter<Content>(datas,
                     holder.setText(R.id.tv_subtitle, "— —《${subtitle}》")
                     holder.setText(R.id.tv_like_count, like_count)
                     holder.setText(R.id.tv_post_date, TimeDateUtils.formatTime(post_date))
-                    Glide.with(context).load(img_url).into(holder.getView(R.id.iv_cover))
+                    holder.getView<ImageView>(R.id.iv_cover).glide(img_url)
                 }
                 Content.music -> {
                     holder.setText(R.id.tv_tag_title, "— ${context.getString(R.string.title_music)} —")
@@ -94,14 +93,13 @@ class HomeAdapter(datas: ArrayList<Content>) : BaseAdapter<Content>(datas,
                     holder.setText(R.id.tv_forward, forward)
                     holder.setText(R.id.tv_like_count, like_count)
                     holder.setText(R.id.tv_post_date, TimeDateUtils.formatTime(post_date))
-                    Glide.with(context).load(img_url)
-                            .apply(bitmapTransform(RoundedCornersTransformation(ScreenUtils.dip2px(90f), 0)))
-                            .into(holder.getView(R.id.iv_cover))
+                    holder.getView<ImageView>(R.id.iv_cover).glide(img_url,
+                            RequestOptions.bitmapTransform(RoundedCornersTransformation(ScreenUtils.dip2px(90f), 0)))
                 }
                 Content.radio -> {
                     holder.setText(R.id.tv_title, title)
                     holder.setText(R.id.tv_like_count, like_count)
-                    Glide.with(context).load(img_url).into(holder.getView(R.id.iv_cover))
+                    holder.getView<ImageView>(R.id.iv_cover).glide(img_url)
                 }
                 else -> {
 

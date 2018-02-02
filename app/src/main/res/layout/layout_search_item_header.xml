@@ -8,10 +8,13 @@
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="215dp"
+        app:banner_indicatorGravity="right"
         app:banner_pageChangeDuration="1500"
         app:banner_pointAutoPlayAble="true"
         app:banner_pointContainerBackground="@color/black_alpha_0.7"
-        app:banner_pointDrawable="@color/white"
+        app:banner_pointDrawable="@drawable/selector_banner_point_bg"
+        app:banner_tipTextColor="@color/white"
+        app:banner_tipTextSize="@dimen/dimen_14"
         app:banner_transitionEffect="alpha" />
 
     <TextView
@@ -28,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_category_title"
+        android:layout_marginBottom="@dimen/dimen_8"
         android:layout_marginLeft="@dimen/main_margin_16"
         android:layout_marginRight="@dimen/main_margin_16"
         android:background="@drawable/alltab_toc"

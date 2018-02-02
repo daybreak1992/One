@@ -3,6 +3,7 @@ package com.tanghong.joker.ui.main
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener
 import com.tanghong.commonlibrary.base.BaseFragment
 import com.tanghong.commonlibrary.base.adapter.OnItemClickListener
@@ -51,6 +52,7 @@ class HomeFragment : BaseFragment<HomePresenter>(), HomeContract.View {
         rv_home.layoutManager = LinearLayoutManager(activity)
         rv_home.adapter = homeAdapter
         srl_home.isEnableLoadmore = false
+        srl_home.setRefreshHeader(ClassicsHeader(context))
 
         srl_home.setOnRefreshLoadmoreListener(object : OnRefreshLoadmoreListener {
 

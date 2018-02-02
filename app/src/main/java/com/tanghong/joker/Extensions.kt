@@ -2,8 +2,14 @@ package com.tanghong.joker
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Parcelable
+import android.text.TextUtils
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
 import source.RepositoryFactory
 import source.TasksRepository
 import java.io.Serializable
@@ -40,3 +46,43 @@ fun <T> Context.openPage(toClass: Class<T>, params: Map<String, Any>?) {
 }
 
 fun createRepository(): TasksRepository = RepositoryFactory.provideRepository()
+
+fun ImageView.glide(url: String?) {
+    if (TextUtils.isEmpty(url)) {
+        return
+    }
+    Glide.with(context)
+            .load(url)
+            .into(this)
+}
+
+fun ImageView.glide(url: String?, options: RequestOptions) {
+    if (TextUtils.isEmpty(url)) {
+        return
+    }
+    Glide.with(context)
+            .load(url)
+            .apply(options)
+            .into(this)
+}
+
+fun ImageView.glide(url: String?, listener: RequestListener<Drawable>) {
+    if (TextUtils.isEmpty(url)) {
+        return
+    }
+    Glide.with(context)
+            .load(url)
+            .listener(listener)
+            .into(this)
+}
+
+fun ImageView.glide(url: String?, options: RequestOptions, listener: RequestListener<Drawable>) {
+    if (TextUtils.isEmpty(url)) {
+        return
+    }
+    Glide.with(context)
+            .load(url)
+            .apply(options)
+            .listener(listener)
+            .into(this)
+}

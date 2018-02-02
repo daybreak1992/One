@@ -40,20 +40,23 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
 
         toolBar.setNavigationOnClickListener { drawer_main.openDrawer(Gravity.LEFT) }
         bnv_navigation.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
-            switchFragment(item.itemId)
+            switchFragment(false, item.itemId)
             true
         })
     }
 
     override fun initData() {
-        switchFragment(R.id.navigation_home)
+        switchFragment(true, R.id.navigation_home)
     }
 
     override fun start() {
 
     }
 
-    private fun switchFragment(itemId: Int) {
+    private fun switchFragment(isInit: Boolean, itemId: Int) {
+        if (!isInit && itemId == bnv_navigation.selectedItemId) {
+            return
+        }
         val transaction = supportFragmentManager.beginTransaction()
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
         hideFragments(transaction)
@@ -109,7 +112,16 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
         menuInflater.inflate(R.menu.home, menu)
         menuDate = menu?.findItem(R.id.menu_date)
         menuSearch = menu?.findItem(R.id.menu_search)
-        switchFragment(R.id.navigation_home)
+        menuDate?.isVisible = true
+        menuSearch?.isVisible = false
+        when (bnv_navigation.selectedItemId) {
+            R.id.navigation_home -> {
+                menuDate?.isVisible = true
+            }
+            R.id.navigation_search -> {
+                menuSearch?.isVisible = true
+            }
+        }
         return true
     }
 

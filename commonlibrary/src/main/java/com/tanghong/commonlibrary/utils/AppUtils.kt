@@ -36,7 +36,7 @@ class AppUtils private constructor() {
             var verCode = -1
             try {
                 val packageName = context.packageName
-                verCode = context.packageManager.getPackageInfo(packageName, 0).versionCode ?: -1
+                verCode = context.packageManager.getPackageInfo(packageName, 0).versionCode
             } catch (e: PackageManager.NameNotFoundException) {
                 e.printStackTrace()
             }

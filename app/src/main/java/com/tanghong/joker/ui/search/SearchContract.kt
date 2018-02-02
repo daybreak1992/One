@@ -23,13 +23,13 @@ interface SearchContract {
 
         fun setHotAuthors(result: Result<List<User>>)
 
-        fun setError(e: ApiException)
+        fun setError(isRefresh: Boolean, e: ApiException)
     }
 
     interface Presenter : IPresenter<View> {
 
         fun loadBanners(isRefresh: Boolean, type: String, last_id: String)
 
-        fun getHotAuthors()
+        fun loadHotAuthors()
     }
 }
