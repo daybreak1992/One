@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants">
 
     <cn.bingoogolapple.bgabanner.BGABanner
         android:id="@+id/banner"
@@ -28,10 +29,10 @@
         android:textSize="@dimen/dimen_16" />
 
     <LinearLayout
+        android:id="@+id/ll_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_category_title"
-        android:layout_marginBottom="@dimen/dimen_8"
         android:layout_marginLeft="@dimen/main_margin_16"
         android:layout_marginRight="@dimen/main_margin_16"
         android:background="@drawable/alltab_toc"
@@ -93,4 +94,40 @@
                 android:background="@color/transparent" />
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_title_hot_authors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_category"
+        android:padding="@dimen/dimen_16"
+        android:text="@string/title_hot_authors"
+        android:textColor="@color/color_333" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_hot_authors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title_hot_authors"
+        android:layout_marginLeft="@dimen/dimen_8"
+        android:layout_marginRight="@dimen/dimen_8"
+        android:overScrollMode="never" />
+
+    <TextView
+        android:id="@+id/tv_title_top_questions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rv_hot_authors"
+        android:padding="@dimen/dimen_16"
+        android:text="@string/title_top_questions"
+        android:textColor="@color/color_333" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_top_questions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title_top_questions"
+        android:layout_marginBottom="@dimen/dimen_8"
+        android:layout_marginLeft="@dimen/dimen_8"
+        android:layout_marginRight="@dimen/dimen_8" />
 </RelativeLayout>

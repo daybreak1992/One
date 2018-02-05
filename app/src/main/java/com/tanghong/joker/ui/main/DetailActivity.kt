@@ -63,15 +63,16 @@ class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
 
     override fun initData() {
         id = intent.getStringExtra("id")
-        val classification = intent.getStringExtra("category")
+        val type = intent.getStringExtra("category")
         source_id = intent.getStringExtra("source_id")
 
-        when (classification) {
-            Content.article.toString() -> category = Content.essay
-            Content.questions_answers.toString() -> category = Content.question
-            Content.serial.toString() -> category = Content.serialcontent
+        when (type) {
+            Content.article.toString() -> category = Content.essay_detail
+            Content.questions_answers.toString() -> category = Content.question_detail
+            Content.serial.toString() -> category = Content.serialcontent_detail
             Content.music.toString() -> category = Content.music_detail
             Content.movie.toString() -> category = Content.movie_detail
+            Content.topic.toString() -> category = Content.topic_detail
         }
     }
 

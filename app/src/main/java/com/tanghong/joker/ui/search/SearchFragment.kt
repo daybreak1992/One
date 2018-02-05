@@ -9,10 +9,13 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener
 import com.tanghong.commonlibrary.base.BaseFragment
 import com.tanghong.commonlibrary.base.adapter.OnItemClickListener
 import com.tanghong.joker.R
+import com.tanghong.joker.openPage
+import com.tanghong.joker.ui.main.DetailActivity
 import http.ApiException
 import kotlinx.android.synthetic.main.fragment_search.*
 import model.Banner
 import model.Result
+import model.SearchHeader
 import model.User
 import org.jetbrains.anko.support.v4.toast
 
@@ -28,6 +31,7 @@ class SearchFragment : BaseFragment<SearchPresenter>(), SearchContract.View {
 
     val searchList = arrayListOf<Any>()
     var searchAdapter: SearchAdapter? = null
+    val searchHeader = SearchHeader()
 
     var last_id: String = "0"
 
@@ -57,8 +61,15 @@ class SearchFragment : BaseFragment<SearchPresenter>(), SearchContract.View {
         searchAdapter?.setOnItemClickListener(object : OnItemClickListener<Any> {
 
             override fun onItemClick(data: Any, position: Int) {
-                if (data is Banner) {
-                    toast(data.title)
+                when (data) {
+                    is Banner -> {
+                        val map = mapOf(
+                                "id" to data.content_id,
+                                "category" to data.category,
+                                "source_id" to data.id
+                        )
+                        context?.openPage(DetailActivity::class.java, map)
+                    }
                 }
             }
         })
@@ -89,6 +100,8 @@ class SearchFragment : BaseFragment<SearchPresenter>(), SearchContract.View {
         last_id = "0"
         presenter.loadHotAuthors()
         presenter.loadBanners(true, banners_title, last_id)
+        presenter.loadBanners(true, banners_horizontal, last_id)
+        presenter.loadBanners(true, banners, last_id)
     }
 
     fun onLoadMore() {
@@ -106,9 +119,7 @@ class SearchFragment : BaseFragment<SearchPresenter>(), SearchContract.View {
 
     override fun setBanners(isRefresh: Boolean, type: String, result: Result<List<Banner>>) {
         if (isRefresh) {
-            if (type == banners_title) {
-                presenter.loadBanners(true, banners, last_id)
-            } else {
+            if (banners == type) {
                 closeProgress()
                 srl_search.finishRefresh()
             }
@@ -123,18 +134,40 @@ class SearchFragment : BaseFragment<SearchPresenter>(), SearchContract.View {
         if (result.data.isEmpty()) {
             return
         }
-        if (type == banners_title) {
-            searchList.clear()
-            searchList.add(result)
-            searchAdapter?.notifyDataSetChanged()
-        } else {
-            searchList.addAll(result.data)
-            searchAdapter?.notifyItemRangeInserted(searchList.size, result.data.size)
+        when (type) {
+            banners_title -> {
+                searchHeader.banners_title = result
+                dealHeaderData()
+            }
+            banners_horizontal -> {
+                searchHeader.banners_horizontal = result
+                dealHeaderData()
+            }
+            banners -> {
+                if (isRefresh) {
+                    searchList.clear()
+                    searchList.add(searchHeader)
+                    searchList.addAll(result.data)
+                    searchAdapter?.notifyDataSetChanged()
+                } else {
+                    searchList.addAll(result.data)
+                    searchAdapter?.notifyItemRangeInserted(searchList.size, result.data.size)
+                }
+            }
         }
     }
 
     override fun setHotAuthors(result: Result<List<User>>) {
+        searchHeader.hot_authors = result
+        dealHeaderData()
+    }
 
+    fun dealHeaderData() {
+        if (searchList.isEmpty()) {
+            return
+        }
+        searchList[0] = searchHeader
+        searchAdapter?.notifyItemChanged(0)
     }
 
     override fun setError(isRefresh: Boolean, e: ApiException) {

@@ -73,7 +73,7 @@ class HomeFragment : BaseFragment<HomePresenter>(), HomeContract.View {
                             "category" to data.category,
                             "source_id" to data.id
                     )
-                    activity?.openPage(DetailActivity::class.java, map)
+                    context?.openPage(DetailActivity::class.java, map)
                 }
             }
         })

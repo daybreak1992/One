@@ -28,11 +28,13 @@ open class Content(var id: String, var category: String, var display_category: S
         val music = 4
         val movie = 5
         val radio = 8
+        val topic = 11
 
-        val essay = "essay"
-        val question = "question"
-        val serialcontent = "serialcontent"
+        val essay_detail = "essay"
+        val question_detail = "question"
+        val serialcontent_detail = "serialcontent"
         val music_detail = "music"
         val movie_detail = "movie"
+        val topic_detail = "topic"
     }
 }
