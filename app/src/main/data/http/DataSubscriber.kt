@@ -18,12 +18,16 @@ class DataSubscriber<T>(val dataCallback: DataCallback<T>) : ResourceSubscriber<
 
     }
 
-    override fun onNext(t: T) {
-        val result: Result<*> = t as Result<*>;
-        if (result.res == 0) {
+    override fun onNext(t: T) = when (t) {
+        is Result<*> -> {
+            if (t.res == 0) {
+                dataCallback.onSuccess(t)
+            } else {
+                dataCallback.onError(ApiException(t.res, Constants.error_msg_data))
+            }
+        }
+        else -> {
             dataCallback.onSuccess(t)
-        } else {
-            dataCallback.onError(ApiException(result.res, Constants.error_msg_data))
         }
     }
 

@@ -3,5 +3,6 @@
     <item android:drawable="@drawable/shape_btn_press_accent" android:state_pressed="true" />
     <item android:drawable="@drawable/shape_btn_press_accent" android:state_selected="true" />
     <item android:drawable="@drawable/shape_btn_press_accent" android:state_focused="true" />
+    <item android:drawable="@drawable/shape_btn_enable_999" android:state_enabled="false" />
     <item android:drawable="@drawable/shape_btn_normal_accent" />
 </selector>

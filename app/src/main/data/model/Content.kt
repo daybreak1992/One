@@ -36,5 +36,13 @@ open class Content(var id: String, var category: String, var display_category: S
         val music_detail = "music"
         val movie_detail = "movie"
         val topic_detail = "topic"
+
+        val category_illustration = "图文"
+        val category_article = "阅读"
+        val category_serial = "连载"
+        val category_questions_answers = "问答"
+        val category_music = "音乐"
+        val category_movie = "影视"
+        val category_radio = "电台"
     }
 }

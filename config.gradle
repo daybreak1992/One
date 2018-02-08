@@ -2,7 +2,7 @@ ext {
     android = [
             compileSdkVersion: 26,
             buildToolsVersion: "27.0.0",
-            minSdkVersion    : 14,
+            minSdkVersion    : 16,
             targetSdkVersion : 26,
             versionCode      : 1,
             versionName      : "1.0"
@@ -25,7 +25,9 @@ ext {
             refresh           : "1.0.4-7",
             rxpermissions     : "0.9.5",
             roundImage        : "2.3.0",
-            banner            : "2.2.4"
+            banner            : "2.2.4",
+            jsbridge          : "1.0.4",
+            room              : "1.0.0"
     ]
 
     supportDeps = [
@@ -54,6 +56,11 @@ ext {
             rxAndroid: "io.reactivex.rxjava2:rxandroid:$dependVersion.rxAndroid"
     ]
 
+    room = [
+            room      : "android.arch.persistence.room:runtime:$dependVersion.room",
+            roomRxJava: "android.arch.persistence.room:rxjava2:$dependVersion.room"
+    ]
+
     glide = "com.github.bumptech.glide:glide:$dependVersion.glideSdkVersion"
     glideCompiler = "com.github.bumptech.glide:compiler:$dependVersion.glideSdkVersion"
     glideOkhttp = "com.github.bumptech.glide:okhttp3-integration:$dependVersion.glideSdkVersion"
@@ -65,12 +72,16 @@ ext {
     rxpermissions = "com.tbruyelle.rxpermissions2:rxpermissions:$dependVersion.rxpermissions@aar"
     roundImage = "com.makeramen:roundedimageview:$dependVersion.roundImage"
     banner = "cn.bingoogolapple:bga-banner:$dependVersion.banner@aar"
+    jsbridge = "com.github.lzyzsd:jsbridge:$dependVersion.jsbridge"
+
+    roomCompiler = "android.arch.persistence.room:compiler:$dependVersion.room"
 
     supportLibs = supportDeps.values()
     networkLibs = retrofit.values()
     rxJavaLibs = rxJava.values()
-    otherLibs = [rxpermissions, glide, glideTransform, dialog, refresh, refreshHeader, roundImage, banner]
-
+    roomLibs = room.values()
+    otherLibs = [rxpermissions, glide, glideTransform, dialog, refresh, refreshHeader, roundImage,
+                 banner, jsbridge]
     // APT
-    annotationProcessorLibs = [glideCompiler]
+    annotationProcessorLibs = [glideCompiler, roomCompiler]
 }

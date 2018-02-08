@@ -22,4 +22,10 @@ interface TasksDataSource {
     fun getBanners(type: String, last_id: String): Flowable<Result<List<Banner>>>
 
     fun getHotAuthors(): Flowable<Result<List<User>>>
+
+    fun getCategory(id: String): Flowable<Category>
+
+    fun login(user_name: String, sex: String, reg_type: String, uid: String): Flowable<Result<Account>>
+
+    fun getUser(id: String, user_id: String, token: String): Flowable<Result<User>>
 }

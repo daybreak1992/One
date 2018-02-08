@@ -5,6 +5,7 @@ import android.content.Context
 import com.squareup.leakcanary.LeakCanary
 import com.tanghong.commonlibrary.utils.AppUtils
 import com.tencent.smtt.sdk.QbSdk
+import db.helper.DbHelper
 import kotlin.properties.Delegates
 
 /**
@@ -32,6 +33,8 @@ class App : Application() {
         appContext = applicationContext
         //初始化工具类
         AppUtils.init(this)
+        //初始化数据库
+        DbHelper.initDb(appContext)
         //初始化x5WebView
         QbSdk.initX5Environment(appContext, object : QbSdk.PreInitCallback {
 

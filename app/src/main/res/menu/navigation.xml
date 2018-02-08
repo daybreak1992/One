@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+    <item android:title="@string/title_my">
+        <menu>
+            <item
+                android:id="@+id/menu_collect"
+                android:icon="@drawable/ic_collections_black_24dp"
+                android:title="@string/title_collect" />
+            <item
+                android:id="@+id/menu_attention"
+                android:icon="@drawable/ic_attention_black_24dp"
+                android:title="@string/title_attention" />
+            <item
+                android:id="@+id/menu_music_list"
+                android:icon="@drawable/ic_featured_play_list_black_24dp"
+                android:title="@string/title_music_list" />
+        </menu>
+    </item>
 
-    <item
-        android:id="@+id/navigation_search"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:title="@string/title_search" />
+    <item android:title="@string/title_option">
+        <menu>
+            <item
+                android:id="@+id/menu_setting"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="@string/title_setting" />
 
-    <item
-        android:id="@+id/navigation_message"
-        android:icon="@drawable/ic_message_black_24dp"
-        android:title="@string/title_message" />
-
+            <item
+                android:id="@+id/menu_about"
+                android:icon="@drawable/ic_about_black_24dp"
+                android:title="@string/title_about" />
+        </menu>
+    </item>
 </menu>

@@ -8,7 +8,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener
 import com.tanghong.commonlibrary.base.BaseActivity
 import com.tanghong.joker.R
-import com.tanghong.joker.ui.other.X5WebView
+import com.tanghong.joker.ui.other.X5WebViewFactory
 import http.ApiException
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -130,6 +130,6 @@ class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
     override fun onDestroy() {
         super.onDestroy()
         presenter.detachView()
-        X5WebView.destroyWebView()
+        X5WebViewFactory.destroyWebView()
     }
 }

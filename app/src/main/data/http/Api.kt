@@ -2,9 +2,7 @@ package http
 
 import io.reactivex.Flowable
 import model.*
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  * <pre>
@@ -32,4 +30,15 @@ interface Api {
 
     @GET("author/hot")
     fun getHotAuthors(): Flowable<Result<List<User>>>
+
+    @GET("all/list/{id}")
+    fun getCategory(@Path("id") id: String): Flowable<Category>
+
+    @POST("user/login")
+    @FormUrlEncoded
+    fun login(@Field("user_name") user_name: String, @Field("sex") sex: String,
+              @Field("reg_type") reg_type: String, @Field("uid") uid: String): Flowable<Result<Account>>
+
+    @GET("user/info/{id}")
+    fun getUser(@Path("id") id: String, @Query("user_id") user_id: String, @Query("jwt") token: String): Flowable<Result<User>>
 }

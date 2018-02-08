@@ -2,6 +2,7 @@ package com.tanghong.joker.ui.search
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.text.TextUtils
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -10,6 +11,7 @@ import com.tanghong.commonlibrary.base.BaseFragment
 import com.tanghong.commonlibrary.base.adapter.OnItemClickListener
 import com.tanghong.joker.R
 import com.tanghong.joker.openPage
+import com.tanghong.joker.openWeb
 import com.tanghong.joker.ui.main.DetailActivity
 import http.ApiException
 import kotlinx.android.synthetic.main.fragment_search.*
@@ -17,7 +19,6 @@ import model.Banner
 import model.Result
 import model.SearchHeader
 import model.User
-import org.jetbrains.anko.support.v4.toast
 
 /**
  * <pre>
@@ -63,12 +64,18 @@ class SearchFragment : BaseFragment<SearchPresenter>(), SearchContract.View {
             override fun onItemClick(data: Any, position: Int) {
                 when (data) {
                     is Banner -> {
-                        val map = mapOf(
-                                "id" to data.content_id,
-                                "category" to data.category,
-                                "source_id" to data.id
-                        )
-                        context?.openPage(DetailActivity::class.java, map)
+                        if (TextUtils.isEmpty(data.link_url)) {
+                            val params = hashMapOf<String, Any>(
+                                    "id" to data.content_id,
+                                    "category" to data.category,
+                                    "source_id" to data.id
+                            )
+                            context?.openPage(DetailActivity::class.java, params)
+                        } else {
+                            if (data.link_url.startsWith("http", true)) {
+                                context?.openWeb(data.link_url)
+                            }
+                        }
                     }
                 }
             }
@@ -114,7 +121,7 @@ class SearchFragment : BaseFragment<SearchPresenter>(), SearchContract.View {
     }
 
     fun onSearchClick() {
-        toast("searchClick")
+        context?.openPage(SearchDetailActivity::class.java)
     }
 
     override fun setBanners(isRefresh: Boolean, type: String, result: Result<List<Banner>>) {

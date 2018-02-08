@@ -8,25 +8,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:paddingTop="@dimen/toolbar_padding_top">
-
-            <include layout="@layout/layout_toolbar" />
-
-        </android.support.design.widget.AppBarLayout>
+        <include layout="@layout/layout_toolbar" />
 
         <FrameLayout
             android:id="@+id/fl_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/bnv_navigation"
-            android:layout_below="@id/appBarLayout" />
+            android:layout_below="@+id/toolBar" />
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bnv_navigation"
@@ -34,23 +26,15 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="?android:attr/windowBackground"
-            app:menu="@menu/navigation" />
+            app:menu="@menu/bottom_navigation" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/rl_left_menu"
-        android:layout_width="match_parent"
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nv_navigation"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="left"
-        android:background="@color/white"
-        android:clickable="true">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:text="@string/app_name"
-            android:textColor="@color/color_333"
-            android:textSize="@dimen/dimen_18" />
-    </RelativeLayout>
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/layout_navigation_header"
+        app:menu="@menu/navigation" />
 </android.support.v4.widget.DrawerLayout>

@@ -25,6 +25,7 @@ class Constants private constructor() {
         val user_id = ""
         val sign = "a472875f55625efe726cdf7b73eae5ee"
         val uuid = "00000000-7a2a-fae7-9c35-fcea0033c587"
+        val uid = "4398610029340"
         val city = "上海"
 
         //error

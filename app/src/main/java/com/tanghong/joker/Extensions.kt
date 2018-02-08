@@ -3,6 +3,7 @@ package com.tanghong.joker
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.text.TextUtils
@@ -25,7 +26,7 @@ import java.io.Serializable
 
 fun <T> Context.openPage(toClass: Class<T>) = openPage(toClass, null)
 
-fun <T> Context.openPage(toClass: Class<T>, params: Map<String, Any>?) {
+fun <T> Context.openPage(toClass: Class<T>, params: HashMap<String, Any>?) {
     val intent = Intent(this, toClass)
     if (params != null && !params.isEmpty()) {
         val extras = Bundle()
@@ -43,6 +44,11 @@ fun <T> Context.openPage(toClass: Class<T>, params: Map<String, Any>?) {
         intent.putExtras(extras)
     }
     startActivity(intent)
+}
+
+fun Context.openWeb(url: String) {
+    if (TextUtils.isEmpty(url)) return
+    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
 }
 
 fun createRepository(): TasksRepository = RepositoryFactory.provideRepository()

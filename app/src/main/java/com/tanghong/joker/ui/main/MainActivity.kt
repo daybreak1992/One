@@ -7,14 +7,19 @@ import android.view.Gravity
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.RelativeLayout
+import android.widget.TextView
 import com.tanghong.commonlibrary.base.BaseActivity
-import com.tanghong.commonlibrary.utils.StatusBarUtil
 import com.tanghong.joker.R
+import com.tanghong.joker.openPage
 import com.tanghong.joker.ui.message.MessageFragment
+import com.tanghong.joker.ui.profile.LoginActivity
 import com.tanghong.joker.ui.search.SearchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.toast
+
 
 class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
 
@@ -26,23 +31,48 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
     private var menuSearch: MenuItem? = null
     private var exitTime: Long = 0
 
+    private var rl_header_container: RelativeLayout? = null
+    private var iv_avater: ImageView? = null
+    private var tv_name: TextView? = null
+
     override fun initPresenter(): MainPresenter = MainPresenter()
 
     override fun layoutId(): Int = R.layout.activity_main
 
     override fun initView() {
         presenter.attachView(this)
-        StatusBarUtil.setTranslucentForDrawerLayout(this, drawer_main, 0)
         setSupportActionBar(toolBar)
         val toggle = ActionBarDrawerToggle(this, drawer_main, toolBar, R.string.drawer_open, R.string.drawer_close)
         toggle.syncState()
         drawer_main.addDrawerListener(toggle)
+        initNavigationHeader()
 
-        toolBar.setNavigationOnClickListener { drawer_main.openDrawer(Gravity.LEFT) }
+        toolBar.setNavigationOnClickListener { drawer_main.openDrawer(Gravity.START) }
         bnv_navigation.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
             switchFragment(false, item.itemId)
             true
         })
+        nv_navigation.setNavigationItemSelectedListener { item: MenuItem ->
+            drawer_main.closeDrawer(Gravity.START)
+            when (item.itemId) {
+
+            }
+            true
+        }
+    }
+
+    private fun initNavigationHeader() {
+        if (nv_navigation.headerCount == 0) {
+            return
+        }
+        val headerView = nv_navigation.getHeaderView(0)
+        rl_header_container = headerView.findViewById(R.id.rl_header_container)
+        iv_avater = headerView.findViewById(R.id.iv_avatar)
+        tv_name = headerView.findViewById(R.id.tv_name)
+
+        iv_avater?.setOnClickListener {
+            openPage(LoginActivity::class.java)
+        }
     }
 
     override fun initData() {

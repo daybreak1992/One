@@ -3,17 +3,24 @@ package com.tanghong.joker.ui.search
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
+import android.text.TextUtils
+import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import cn.bingoogolapple.bgabanner.BGABanner
 import com.tanghong.commonlibrary.base.adapter.BaseAdapter
 import com.tanghong.commonlibrary.base.adapter.BaseViewHolder
 import com.tanghong.commonlibrary.base.adapter.MultiType
+import com.tanghong.commonlibrary.base.adapter.OnItemClickListener
 import com.tanghong.joker.R
 import com.tanghong.joker.glide
+import com.tanghong.joker.openPage
+import com.tanghong.joker.openWeb
+import com.tanghong.joker.ui.main.DetailActivity
+import com.tanghong.joker.ui.profile.CategoryActivity
 import model.Banner
 import model.SearchHeader
 import model.User
-import org.jetbrains.anko.toast
 
 /**
  * <pre>
@@ -39,6 +46,13 @@ class SearchAdapter(datas: ArrayList<Any>) : BaseAdapter<Any>(datas,
             holder.getView<ImageView>(R.id.iv_cover).glide(data.cover)
         }
         is SearchHeader -> {
+            holder.getView<Button>(R.id.btn_illustration).setOnClickListener(OnCategoryClickListener())
+            holder.getView<Button>(R.id.btn_questions_answers).setOnClickListener(OnCategoryClickListener())
+            holder.getView<Button>(R.id.btn_article).setOnClickListener(OnCategoryClickListener())
+            holder.getView<Button>(R.id.btn_serial).setOnClickListener(OnCategoryClickListener())
+            holder.getView<Button>(R.id.btn_movie).setOnClickListener(OnCategoryClickListener())
+            holder.getView<Button>(R.id.btn_music).setOnClickListener(OnCategoryClickListener())
+            holder.getView<Button>(R.id.btn_radio).setOnClickListener(OnCategoryClickListener())
             data.banners_title?.let {
                 val banners_title: List<Banner> = data.banners_title!!.data as List<Banner>
                 val banner = holder.getViewGroup<BGABanner>(R.id.banner)
@@ -51,7 +65,20 @@ class SearchAdapter(datas: ArrayList<Any>) : BaseAdapter<Any>(datas,
                 banner.setDelegate(object : BGABanner.Delegate<ImageView, Banner> {
 
                     override fun onBannerItemClick(banner: BGABanner, itemView: ImageView, model: Banner?, position: Int) {
-                        context.toast(model?.title!!)
+                        model?.run {
+                            if (TextUtils.isEmpty(link_url)) {
+                                val params = hashMapOf<String, Any>(
+                                        "id" to content_id,
+                                        "category" to category,
+                                        "source_id" to id
+                                )
+                                context.openPage(DetailActivity::class.java, params)
+                            } else {
+                                if (link_url.startsWith("http", true)) {
+                                    context.openWeb(link_url)
+                                }
+                            }
+                        }
                     }
                 })
                 val tips = arrayListOf<String>()
@@ -68,6 +95,23 @@ class SearchAdapter(datas: ArrayList<Any>) : BaseAdapter<Any>(datas,
                 }
                 val searchQuestionAdapter = SearchQuestionAdapter(R.layout.layout_search_question_item, data.banners_horizontal!!.data as ArrayList<Banner>)
                 rv_top_questions.adapter = searchQuestionAdapter
+                searchQuestionAdapter.setOnItemClickListener(object : OnItemClickListener<Banner> {
+
+                    override fun onItemClick(data: Banner, position: Int) {
+                        if (TextUtils.isEmpty(data.link_url)) {
+                            val params = hashMapOf<String, Any>(
+                                    "id" to data.content_id,
+                                    "category" to data.category,
+                                    "source_id" to data.id
+                            )
+                            context.openPage(DetailActivity::class.java, params)
+                        } else {
+                            if (data.link_url.startsWith("http", true)) {
+                                context.openWeb(data.link_url)
+                            }
+                        }
+                    }
+                })
             }
             data.hot_authors?.let {
                 val rv_hot_authors = holder.getViewGroup<RecyclerView>(R.id.rv_hot_authors)
@@ -80,6 +124,16 @@ class SearchAdapter(datas: ArrayList<Any>) : BaseAdapter<Any>(datas,
             }
         }
         else -> {
+        }
+    }
+
+    inner class OnCategoryClickListener : View.OnClickListener {
+
+        override fun onClick(v: View) {
+            val params = hashMapOf<String, Any>(
+                    "id" to v.tag.toString()
+            )
+            context.openPage(CategoryActivity::class.java, params)
         }
     }
 }

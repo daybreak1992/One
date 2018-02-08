@@ -45,4 +45,13 @@ class TasksRemoteDataSource private constructor() : TasksDataSource {
 
     override fun getHotAuthors(): Flowable<Result<List<User>>>
             = RetrofitManager.api.getHotAuthors()
+
+    override fun getCategory(id: String): Flowable<Category>
+            = RetrofitManager.api.getCategory(id)
+
+    override fun login(user_name: String, sex: String, reg_type: String, uid: String): Flowable<Result<Account>>
+            = RetrofitManager.api.login(user_name, sex, reg_type, uid)
+
+    override fun getUser(id: String, user_id: String, token: String): Flowable<Result<User>>
+            = RetrofitManager.api.getUser(id, user_id, token)
 }

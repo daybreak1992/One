@@ -1,11 +1,14 @@
 package com.tanghong.joker.ui.other
 
+import android.Manifest
 import android.os.Handler
 import com.tanghong.commonlibrary.base.BaseActivity
 import com.tanghong.joker.R
 import com.tanghong.joker.openPage
 import com.tanghong.joker.ui.main.MainActivity
+import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_splash.*
+import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,13 +38,21 @@ class SplashActivity : BaseActivity<SplashPresenter>(), SplashContract.View {
     }
 
     override fun start() {
-        handler.postDelayed(object : Runnable {
-            override fun run() {
-                openPage(MainActivity::class.java)
-                finish()
-            }
-
-        }, AUTO_HIDE_DELAY_MILLIS)
+        RxPermissions(this)
+                .request(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_WIFI_STATE,
+                        Manifest.permission.ACCESS_NETWORK_STATE)
+                .subscribe({ grant: Boolean ->
+                    if (!grant) {
+                        toast(R.string.prompt_permission_grant)
+                    }
+                    handler.postDelayed({
+                        openPage(MainActivity::class.java)
+                        finish()
+                    }, AUTO_HIDE_DELAY_MILLIS)
+                }, {
+                    toast(R.string.prompt_permission_error)
+                })
     }
 
     private fun getWeekIndex(): Int {

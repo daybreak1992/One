@@ -38,4 +38,13 @@ class TasksRepository(private val tasksRemoteDataSource: TasksRemoteDataSource) 
 
     override fun getHotAuthors(): Flowable<Result<List<User>>>
             = tasksRemoteDataSource.getHotAuthors()
+
+    override fun getCategory(id: String): Flowable<Category>
+            = tasksRemoteDataSource.getCategory(id)
+
+    override fun login(user_name: String, sex: String, reg_type: String, uid: String): Flowable<Result<Account>>
+            = tasksRemoteDataSource.login(user_name, sex, reg_type, uid)
+
+    override fun getUser(id: String, user_id: String, token: String): Flowable<Result<User>>
+            = tasksRemoteDataSource.getUser(id, user_id, token)
 }

@@ -15,7 +15,7 @@ import com.tencent.smtt.sdk.WebView
  *     version: 1.0
  * </pre>
  */
-object X5WebView {
+object X5WebViewFactory {
     private var webView: WebView? = null
 
     fun createWebView(context: Context): WebView {
@@ -27,7 +27,7 @@ object X5WebView {
     }
 
     private fun initWebSettings(context: Context) {
-        val layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        val layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         webView?.setLayoutParams(layoutParams)
         webView?.setWebViewClient(X5WebViewClient())
         webView?.setWebChromeClient(X5WebChromeClient())

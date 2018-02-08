@@ -68,12 +68,12 @@ class HomeFragment : BaseFragment<HomePresenter>(), HomeContract.View {
 
             override fun onItemClick(data: Content, position: Int) {
                 if (data.category.toInt() != Content.illustration) {
-                    val map = mapOf(
+                    val params = hashMapOf<String, Any>(
                             "id" to data.item_id,
                             "category" to data.category,
                             "source_id" to data.id
                     )
-                    context?.openPage(DetailActivity::class.java, map)
+                    context?.openPage(DetailActivity::class.java, params)
                 }
             }
         })
