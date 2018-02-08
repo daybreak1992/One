@@ -37,6 +37,7 @@
                 app:srcCompat="@drawable/ic_cancel_black_24dp" />
 
             <EditText
+                android:id="@+id/et_account"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/dimen_10"
@@ -45,6 +46,7 @@
                 android:layout_toRightOf="@id/iv_account"
                 android:background="@null"
                 android:hint="@string/hint_phone_or_email"
+                android:inputType="phone|textEmailAddress"
                 android:textColor="@color/color_333"
                 android:textColorHint="@color/color_ccc"
                 android:textSize="@dimen/dimen_16" />
@@ -90,6 +92,7 @@
                 app:srcCompat="@drawable/ic_cancel_black_24dp" />
 
             <EditText
+                android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/dimen_10"
@@ -98,6 +101,7 @@
                 android:layout_toRightOf="@id/iv_password"
                 android:background="@null"
                 android:hint="@string/hint_password"
+                android:inputType="textPassword"
                 android:textColor="@color/color_333"
                 android:textColorHint="@color/color_ccc"
                 android:textSize="@dimen/dimen_16" />

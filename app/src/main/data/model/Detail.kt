@@ -8,7 +8,7 @@ package model
  *     version: 1.0
  * </pre>
  */
-class Detail(var audio: String, var anchor: String, var category: String, var id: String,
+data class Detail(var audio: String, var anchor: String, var category: String, var id: String,
              var title: String, var web_url: String, var author_list: List<User>, var tag_list: List<Tag>,
              var html_content: String, var platform: String, var music_id: String,
              var music_exception: String, var praisenum: String, var commentnum: String) {

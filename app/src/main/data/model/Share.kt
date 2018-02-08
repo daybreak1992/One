@@ -8,7 +8,7 @@ package model
  *     version: 1.0
  * </pre>
  */
-open class Share(var url: String, var image: String, var title: String, var content: String, var desc: String,
+data class Share(var url: String, var image: String, var title: String, var content: String, var desc: String,
                  var link: String, var imgUrl: String, var audio: String) {
 
 }

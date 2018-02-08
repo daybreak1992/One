@@ -1,20 +1,19 @@
 package com.tanghong.joker.ui.profile
 
-import android.util.Log
+import android.text.Editable
+import android.text.TextUtils
+import android.text.TextWatcher
 import android.view.View
 import com.tanghong.commonlibrary.base.BaseActivity
-import com.tanghong.commonlibrary.utils.JsonUtils
-import com.tanghong.commonlibrary.utils.RxUtils
 import com.tanghong.joker.R
 import com.tanghong.joker.app.Constants
-import db.helper.DbHelper
 import http.ApiException
-import io.reactivex.subscribers.ResourceSubscriber
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import model.Account
 import model.Result
 import model.User
+import org.jetbrains.anko.toast
 
 /**
  * <pre>
@@ -36,7 +35,36 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginContract.View, View.O
         setSupportActionBar(toolBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        btn_clear_account.setOnClickListener(this)
+        btn_clear_password.setOnClickListener(this)
+        btn_password_state.setOnClickListener(this)
         btn_login.setOnClickListener(this)
+        et_account.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+        et_password.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
         toolBar.setNavigationOnClickListener {
             finish()
         }
@@ -44,28 +72,33 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginContract.View, View.O
 
     override fun onClick(v: View) {
         when (v.id) {
+            R.id.btn_clear_account -> {
+
+            }
+            R.id.btn_clear_password -> {
+
+            }
+            R.id.btn_password_state -> {
+
+            }
             R.id.btn_login -> {
-                presenter.login("***+****+0761", "0", "3", Constants.uid)
+                if (TextUtils.isEmpty(et_account.toString().trim())) {
+                    toast(R.string.prompt_intput_account)
+                    return
+                }
+                if (TextUtils.isEmpty(et_password.toString().trim())) {
+                    toast(R.string.prompt_input_password)
+                    return
+                }
+                showProgress()
+                presenter.login("***+****+${et_account.toString().substring(7)}",
+                        Constants.sex, Constants.reg_type, Constants.uid)
             }
         }
     }
 
     override fun initData() {
-        DbHelper.getAccountDao().queryAll()
-                .compose(RxUtils.composeIo())
-                .subscribeWith(object : ResourceSubscriber<List<Account>>() {
-                    override fun onNext(t: List<Account>?) {
-                        Log.i("login", "onNext111 = ${JsonUtils.serializeToJson(t!!)}")
-                    }
 
-                    override fun onComplete() {
-
-                    }
-
-                    override fun onError(t: Throwable?) {
-                        Log.i("login", "onError111 = ${t?.message}")
-                    }
-                })
     }
 
     override fun start() {
@@ -73,16 +106,15 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginContract.View, View.O
     }
 
     override fun login(result: Result<Account>) {
-        Log.i("login", "result = ${JsonUtils.serializeToJson(result)}")
-        DbHelper.getAccountDao().update(result.data)
+        presenter.loadUser(result.data.id, result.data.id, result.data.token)
     }
 
     override fun setUser(result: Result<User>) {
-
+        finish()
     }
 
     override fun setError(e: ApiException) {
-        Log.i("login", "e = ${e.message}")
+        closeProgress()
     }
 
     override fun onDestroy() {

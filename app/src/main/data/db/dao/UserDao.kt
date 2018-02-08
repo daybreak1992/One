@@ -1,8 +1,6 @@
 package db.dao
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Query
-import android.arch.persistence.room.Update
+import android.arch.persistence.room.*
 import io.reactivex.Flowable
 import model.User
 
@@ -17,8 +15,11 @@ import model.User
 @Dao
 interface UserDao {
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(vararg user: User): List<Long>
+
     @Update
-    fun update(user: User): Int
+    fun update(vararg user: User): Int
 
     @Query("SELECT * FROM user")
     fun queryAll(): Flowable<List<User>>

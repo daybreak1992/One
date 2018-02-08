@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -11,6 +10,7 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -20,12 +20,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.ext.kotlin.kotlinVersion"
-    compile "com.android.support:appcompat-v7:$rootProject.ext.dependVersion.androidSdkVersion"
-    compile "com.android.support:design:$rootProject.ext.dependVersion.androidSdkVersion"
-    compile "com.google.code.gson:gson:$rootProject.ext.dependVersion.gson"
-    compile rootProject.ext.rxJavaLibs
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation rootProject.ext.kotlinLibs
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.dependVersion.androidSdkVersion"
+    implementation "com.android.support:design:$rootProject.ext.dependVersion.androidSdkVersion"
+    implementation "com.google.code.gson:gson:$rootProject.ext.dependVersion.gson"
+    implementation rootProject.ext.rxJavaLibs
     //dialog
-    compile 'com.afollestad.material-dialogs:core:0.9.6.0'
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 }

@@ -8,7 +8,7 @@ package model
  *     version: 1.0
  * </pre>
  */
-open class Content(var id: String, var category: String, var display_category: String, var item_id: String,
+data class Content(var id: String, var category: String, var display_category: String, var item_id: String,
                    var title: String, var forward: String, var img_url: String, var like_count: String,
                    var post_date: String, var video_url: String, var audio_url: String, var audio_platform: String,
                    var start_video: String, var has_reading: String, var volume: String, var pic_info: String,

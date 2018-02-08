@@ -8,6 +8,6 @@ package model
  *     version: 1.0
  * </pre>
  */
-open class Tag(var id: String, var title: String) {
+data class Tag(var id: String, var title: String) {
 
 }

@@ -8,7 +8,7 @@ package model
  *     version: 1.0
  * </pre>
  */
-open class One(var id: String, var date: String, var weather: Weather, var content_list: List<Content>,
+data class One(var id: String, var date: String, var weather: Weather, var content_list: List<Content>,
                var menu: Menu) {
 
 }

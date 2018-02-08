@@ -2,6 +2,8 @@ package com.tanghong.joker.ui.main
 
 import com.tanghong.commonlibrary.base.IBaseView
 import com.tanghong.commonlibrary.base.IPresenter
+import http.ApiException
+import model.User
 
 /**
  * <pre>
@@ -14,10 +16,13 @@ import com.tanghong.commonlibrary.base.IPresenter
 interface MainContract {
 
     interface View : IBaseView {
+        fun setUser(user: List<User>)
 
+        fun setError(e: ApiException)
     }
 
     interface Presenter : IPresenter<View> {
 
+        fun getUser()
     }
 }

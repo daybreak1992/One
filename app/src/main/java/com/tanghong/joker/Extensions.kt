@@ -6,7 +6,9 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
+import android.support.design.widget.Snackbar
 import android.text.TextUtils
+import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestListener
@@ -91,4 +93,8 @@ fun ImageView.glide(url: String?, options: RequestOptions, listener: RequestList
             .apply(options)
             .listener(listener)
             .into(this)
+}
+
+fun View.showSnackbar(snackbarText: String, timeLength: Int) {
+    Snackbar.make(this, snackbarText, timeLength).show()
 }

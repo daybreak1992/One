@@ -8,7 +8,7 @@ package model
  *     version: 1.0
  * </pre>
  */
-class SearchHeader(var banners_title: Result<List<Banner>>?, var banners_horizontal: Result<List<Banner>>?,
+data class SearchHeader(var banners_title: Result<List<Banner>>?, var banners_horizontal: Result<List<Banner>>?,
                    var hot_authors: Result<List<User>>?) {
 
     constructor() : this(null, null, null)

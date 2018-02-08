@@ -9,12 +9,12 @@ ext {
     ]
 
     kotlin = [
-            kotlinVersion: '1.2.10',
+            kotlinVersion: '1.2.21',
             ankoVersion  : "0.10.4"
     ]
 
     dependVersion = [
-            androidSdkVersion : "27.0.2",
+            androidSdkVersion : "26.1.0",
             retrofitSdkVersion: "2.3.0",
             glideSdkVersion   : "4.5.0",
             glideTransform    : "3.1.0",
@@ -40,6 +40,11 @@ ext {
             design        : "com.android.support:design:$dependVersion.androidSdkVersion",
             annotations   : "com.android.support:support-annotations:$dependVersion.androidSdkVersion",
             vectordrawable: "com.android.support:support-vector-drawable:$dependVersion.androidSdkVersion"
+    ]
+
+    kotlinDeps = [
+            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin.kotlinVersion",
+            anko  : "org.jetbrains.anko:anko:$kotlin.ankoVersion"
     ]
 
     retrofit = [
@@ -77,6 +82,7 @@ ext {
     roomCompiler = "android.arch.persistence.room:compiler:$dependVersion.room"
 
     supportLibs = supportDeps.values()
+    kotlinLibs = kotlinDeps.values()
     networkLibs = retrofit.values()
     rxJavaLibs = rxJava.values()
     roomLibs = room.values()

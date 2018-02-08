@@ -8,6 +8,6 @@ package model
  *     version: 1.0
  * </pre>
  */
-open class Menu(var vol: String, var list: List<MenuItem>) {
+data class Menu(var vol: String, var list: List<MenuItem>) {
 
 }

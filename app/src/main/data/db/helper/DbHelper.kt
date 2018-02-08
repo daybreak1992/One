@@ -36,9 +36,13 @@ object DbHelper {
         }
     }
 
+    fun closeDB() {
+        db?.close()
+    }
+
     fun getUserDao(): UserDao = db!!.userDao()
 
-    fun getAccountDao():AccountDao = db!!.accountDao()
+    fun getAccountDao(): AccountDao = db!!.accountDao()
 
     class MigrateDb(startVersion: Int, endVersion: Int) : Migration(startVersion, endVersion) {
 

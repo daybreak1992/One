@@ -8,6 +8,6 @@ package model
  *     version: 1.0
  * </pre>
  */
-class Category(var category: String, var html_content: String) {
+data class Category(var category: String, var html_content: String) {
 
 }

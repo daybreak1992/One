@@ -1,5 +1,6 @@
 package source
 
+import source.local.TasksLocalDataSource
 import source.remote.TasksRemoteDataSource
 
 /**
@@ -14,8 +15,7 @@ class RepositoryFactory {
 
     companion object {
 
-        fun provideRepository(): TasksRepository
-                = TasksRepository.getInstance(TasksRemoteDataSource.getInstace()!!)
-
+        fun provideRepository(): TasksRepository = TasksRepository.getInstance(
+                TasksRemoteDataSource.getInstace()!!, TasksLocalDataSource.getInstance()!!)
     }
 }

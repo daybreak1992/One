@@ -12,6 +12,6 @@ import android.arch.persistence.room.PrimaryKey
  * </pre>
  */
 @Entity(tableName = "account")
-class Account(@PrimaryKey var id: String, var token: String) {
+data class Account(@PrimaryKey var id: String, var token: String) {
 
 }

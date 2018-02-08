@@ -1,5 +1,10 @@
 package source.local
 
+import db.helper.DbHelper
+import io.reactivex.Flowable
+import model.Account
+import model.User
+
 /**
  * <pre>
  *     author : hasee
@@ -26,4 +31,10 @@ class TasksLocalDataSource private constructor() {
             INSTANCE = null
         }
     }
+
+    fun saveAccount(vararg account: Account): List<Long> = DbHelper.getAccountDao().insert(*account)
+
+    fun saveUser(vararg user: User): List<Long> = DbHelper.getUserDao().insert(*user)
+
+    fun getUser(): Flowable<List<User>> = DbHelper.getUserDao().queryAll()
 }

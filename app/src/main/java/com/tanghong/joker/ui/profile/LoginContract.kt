@@ -30,5 +30,9 @@ interface LoginContract {
         fun login(user_name: String, sex: String, reg_type: String, uid: String)
 
         fun loadUser(id: String, user_id: String, token: String)
+
+        fun saveAccount(vararg account: Account)
+
+        fun saveUsers(vararg user: User)
     }
 }

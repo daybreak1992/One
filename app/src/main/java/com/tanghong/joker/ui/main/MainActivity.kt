@@ -1,8 +1,10 @@
 package com.tanghong.joker.ui.main
 
+import android.graphics.drawable.Drawable
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.ActionBarDrawerToggle
+import android.util.Log
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.Menu
@@ -10,19 +12,26 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.tanghong.commonlibrary.base.BaseActivity
+import com.tanghong.commonlibrary.utils.JsonUtils
 import com.tanghong.joker.R
+import com.tanghong.joker.glide
 import com.tanghong.joker.openPage
 import com.tanghong.joker.ui.message.MessageFragment
 import com.tanghong.joker.ui.profile.LoginActivity
 import com.tanghong.joker.ui.search.SearchFragment
+import http.ApiException
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
+import model.User
 import org.jetbrains.anko.toast
 
 
 class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
-
     private var homeFragment: HomeFragment? = null
     private var searchFragment: SearchFragment? = null
     private var messageFragment: MessageFragment? = null
@@ -81,6 +90,29 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
 
     override fun start() {
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.getUser()
+    }
+
+    override fun setUser(user: List<User>) {
+        Log.i("main", "user = ${JsonUtils.serializeToJson(user)}")
+        iv_avater?.glide(user[0].web_url, object : RequestListener<Drawable> {
+            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                return false
+            }
+
+            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                return false
+            }
+        })
+        tv_name?.setText(user[0].user_name)
+    }
+
+    override fun setError(e: ApiException) {
+        Log.i("main", "e = ${JsonUtils.serializeToJson(e)}")
     }
 
     private fun switchFragment(isInit: Boolean, itemId: Int) {
