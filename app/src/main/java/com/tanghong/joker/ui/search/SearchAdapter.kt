@@ -40,90 +40,93 @@ class SearchAdapter(datas: ArrayList<Any>) : BaseAdapter<Any>(datas,
             }
         }) {
 
-    override fun bindData(holder: BaseViewHolder, data: Any, position: Int) = when (data) {
-        is Banner -> {
-            holder.setText(R.id.tv_title, data.title)
-            holder.getView<ImageView>(R.id.iv_cover).glide(data.cover)
-        }
-        is SearchHeader -> {
-            holder.getView<Button>(R.id.btn_illustration).setOnClickListener(OnCategoryClickListener())
-            holder.getView<Button>(R.id.btn_questions_answers).setOnClickListener(OnCategoryClickListener())
-            holder.getView<Button>(R.id.btn_article).setOnClickListener(OnCategoryClickListener())
-            holder.getView<Button>(R.id.btn_serial).setOnClickListener(OnCategoryClickListener())
-            holder.getView<Button>(R.id.btn_movie).setOnClickListener(OnCategoryClickListener())
-            holder.getView<Button>(R.id.btn_music).setOnClickListener(OnCategoryClickListener())
-            holder.getView<Button>(R.id.btn_radio).setOnClickListener(OnCategoryClickListener())
-            data.banners_title?.let {
-                val banners_title: List<Banner> = data.banners_title!!.data as List<Banner>
-                val banner = holder.getViewGroup<BGABanner>(R.id.banner)
-                banner.setAdapter(object : BGABanner.Adapter<ImageView, Banner> {
+    override fun bindData(holder: BaseViewHolder, data: Any, position: Int) {
+        when (data) {
+            is Banner -> {
+                holder.setText(R.id.tv_title, data.title)
+                holder.getView<ImageView>(R.id.iv_cover).glide(data.cover)
+            }
+            is SearchHeader -> {
+                holder.getView<Button>(R.id.btn_illustration).setOnClickListener(OnCategoryClickListener())
+                holder.getView<Button>(R.id.btn_questions_answers).setOnClickListener(OnCategoryClickListener())
+                holder.getView<Button>(R.id.btn_article).setOnClickListener(OnCategoryClickListener())
+                holder.getView<Button>(R.id.btn_serial).setOnClickListener(OnCategoryClickListener())
+                holder.getView<Button>(R.id.btn_movie).setOnClickListener(OnCategoryClickListener())
+                holder.getView<Button>(R.id.btn_music).setOnClickListener(OnCategoryClickListener())
+                holder.getView<Button>(R.id.btn_radio).setOnClickListener(OnCategoryClickListener())
+                data.banners_title?.let {
+                    val banners_title: List<Banner> = data.banners_title!!.data as List<Banner>
+                    val banner = holder.getViewGroup<BGABanner>(R.id.banner)
+                    banner.setAdapter(object : BGABanner.Adapter<ImageView, Banner> {
 
-                    override fun fillBannerItem(banner: BGABanner, itemView: ImageView, model: Banner?, position: Int) {
-                        itemView.glide(model?.cover)
-                    }
-                })
-                banner.setDelegate(object : BGABanner.Delegate<ImageView, Banner> {
+                        override fun fillBannerItem(banner: BGABanner, itemView: ImageView, model: Banner?, position: Int) {
+                            itemView.glide(model?.cover)
+                        }
+                    })
+                    banner.setDelegate(object : BGABanner.Delegate<ImageView, Banner> {
 
-                    override fun onBannerItemClick(banner: BGABanner, itemView: ImageView, model: Banner?, position: Int) {
-                        model?.run {
-                            if (TextUtils.isEmpty(link_url)) {
-                                val params = hashMapOf<String, Any>(
-                                        "id" to content_id,
-                                        "category" to category,
-                                        "source_id" to id
-                                )
-                                context.openPage(DetailActivity::class.java, params)
-                            } else {
-                                if (link_url.startsWith("http", true)) {
-                                    context.openWeb(link_url)
+                        override fun onBannerItemClick(banner: BGABanner, itemView: ImageView, model: Banner?, position: Int) {
+                            model?.run {
+                                if (TextUtils.isEmpty(link_url)) {
+                                    val params = hashMapOf<String, Any>(
+                                            "id" to content_id,
+                                            "category" to category,
+                                            "source_id" to id
+                                    )
+                                    context.openPage(DetailActivity::class.java, params)
+                                } else {
+                                    if (link_url.startsWith("http", true)) {
+                                        context.openWeb(link_url)
+                                    }
                                 }
                             }
                         }
+                    })
+                    val tips = arrayListOf<String>()
+                    banners_title.forEach {
+                        tips.add(it.title)
                     }
-                })
-                val tips = arrayListOf<String>()
-                banners_title.forEach {
-                    tips.add(it.title)
+                    banner.setData(banners_title, tips)
                 }
-                banner.setData(banners_title, tips)
-            }
-            data.banners_horizontal?.let {
-                val rv_top_questions = holder.getView<RecyclerView>(R.id.rv_top_questions)
-                rv_top_questions.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                if (rv_top_questions.onFlingListener == null) {
-                    LinearSnapHelper().attachToRecyclerView(rv_top_questions)
-                }
-                val searchQuestionAdapter = SearchQuestionAdapter(R.layout.layout_search_question_item, data.banners_horizontal!!.data as ArrayList<Banner>)
-                rv_top_questions.adapter = searchQuestionAdapter
-                searchQuestionAdapter.setOnItemClickListener(object : OnItemClickListener<Banner> {
+                data.banners_horizontal?.let {
+                    val rv_top_questions = holder.getView<RecyclerView>(R.id.rv_top_questions)
+                    rv_top_questions.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                    if (rv_top_questions.onFlingListener == null) {
+                        LinearSnapHelper().attachToRecyclerView(rv_top_questions)
+                    }
+                    val searchQuestionAdapter = SearchQuestionAdapter(R.layout.layout_search_question_item, data.banners_horizontal!!.data as ArrayList<Banner>)
+                    rv_top_questions.adapter = searchQuestionAdapter
+                    searchQuestionAdapter.setOnItemClickListener(object : OnItemClickListener<Banner> {
 
-                    override fun onItemClick(data: Banner, position: Int) {
-                        if (TextUtils.isEmpty(data.link_url)) {
-                            val params = hashMapOf<String, Any>(
-                                    "id" to data.content_id,
-                                    "category" to data.category,
-                                    "source_id" to data.id
-                            )
-                            context.openPage(DetailActivity::class.java, params)
-                        } else {
-                            if (data.link_url.startsWith("http", true)) {
-                                context.openWeb(data.link_url)
+                        override fun onItemClick(data: Banner, position: Int) {
+                            if (TextUtils.isEmpty(data.link_url)) {
+                                val params = hashMapOf<String, Any>(
+                                        "id" to data.content_id,
+                                        "category" to data.category,
+                                        "source_id" to data.id
+                                )
+                                context.openPage(DetailActivity::class.java, params)
+                            } else {
+                                if (data.link_url.startsWith("http", true)) {
+                                    context.openWeb(data.link_url)
+                                }
                             }
                         }
-                    }
-                })
-            }
-            data.hot_authors?.let {
-                val rv_hot_authors = holder.getViewGroup<RecyclerView>(R.id.rv_hot_authors)
-                rv_hot_authors.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                if (rv_hot_authors.onFlingListener == null) {
-                    LinearSnapHelper().attachToRecyclerView(rv_hot_authors)
+                    })
                 }
-                val searchUserAdapter = SearchUserAdapter(R.layout.layout_search_user_item, data.hot_authors!!.data as ArrayList<User>)
-                rv_hot_authors.adapter = searchUserAdapter
+                data.hot_authors?.let {
+                    val rv_hot_authors = holder.getViewGroup<RecyclerView>(R.id.rv_hot_authors)
+                    rv_hot_authors.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                    if (rv_hot_authors.onFlingListener == null) {
+                        LinearSnapHelper().attachToRecyclerView(rv_hot_authors)
+                    }
+                    val searchUserAdapter = SearchUserAdapter(R.layout.layout_search_user_item, data.hot_authors!!.data as ArrayList<User>)
+                    rv_hot_authors.adapter = searchUserAdapter
+                }
             }
-        }
-        else -> {
+            else -> {
+
+            }
         }
     }
 

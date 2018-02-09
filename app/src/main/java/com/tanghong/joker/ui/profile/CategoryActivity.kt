@@ -52,15 +52,18 @@ class CategoryActivity : BaseActivity<CategoryPresenter>(), CategoryContract.Vie
 
     override fun initData() {
         id = intent.getStringExtra("id")
-        var title = getString(R.string.app_name)
         when (id) {
-            Content.article.toString() -> title = Content.category_article
-            Content.questions_answers.toString() -> title = Content.category_questions_answers
-            Content.serial.toString() -> title = Content.category_serial
-            Content.music.toString() -> title = Content.category_music
-            Content.movie.toString() -> title = Content.category_movie
+            Content.illustration.toString() -> supportActionBar?.title = Content.category_illustration
+            Content.article.toString() -> supportActionBar?.title = Content.category_article
+            Content.questions_answers.toString() -> supportActionBar?.title = Content.category_questions_answers
+            Content.serial.toString() -> supportActionBar?.title = Content.category_serial
+            Content.music.toString() -> supportActionBar?.title = Content.category_music
+            Content.movie.toString() -> supportActionBar?.title = Content.category_movie
+            Content.radio.toString() -> supportActionBar?.title = Content.category_radio
+            else -> {
+
+            }
         }
-        toolBar.title = title
     }
 
     override fun start() {

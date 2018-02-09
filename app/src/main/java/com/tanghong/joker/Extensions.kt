@@ -28,7 +28,7 @@ import java.io.Serializable
 
 fun <T> Context.openPage(toClass: Class<T>) = openPage(toClass, null)
 
-fun <T> Context.openPage(toClass: Class<T>, params: HashMap<String, Any>?) {
+fun <T> Context.openPage(toClass: Class<T>, params: HashMap<String, *>?) {
     val intent = Intent(this, toClass)
     if (params != null && !params.isEmpty()) {
         val extras = Bundle()

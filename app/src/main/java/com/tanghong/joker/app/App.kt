@@ -2,6 +2,7 @@ package com.tanghong.joker.app
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import com.squareup.leakcanary.LeakCanary
 import com.tanghong.commonlibrary.utils.AppUtils
 import com.tanghong.commonlibrary.utils.RxUtils
@@ -40,15 +41,17 @@ class App : Application() {
                         }.compose(RxUtils.composeIo())
                         .subscribeWith(object : ResourceSubscriber<Int>() {
                             override fun onComplete() {
+                                Log.i("main", "onComplete111 = $isDisposed")
                                 dispose()
+                                Log.i("main", "onComplete222 = $isDisposed")
                             }
 
                             override fun onNext(t: Int?) {
-
+                                Log.i("main", "onNext = $t")
                             }
 
                             override fun onError(t: Throwable?) {
-
+                                Log.i("main", "onError = ${t?.message}")
                             }
                         })
             }

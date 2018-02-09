@@ -56,7 +56,7 @@ abstract class BaseAdapter<T>(private var layoutId: Int, var datas: ArrayList<T>
         }
     }
 
-    protected abstract fun bindData(holder: BaseViewHolder, data: T, position: Int): Unit?
+    protected abstract fun bindData(holder: BaseViewHolder, data: T, position: Int)
 
     fun setOnItemClickListener(itemClickListener: OnItemClickListener<T>) {
         this.itemClickListener = itemClickListener
