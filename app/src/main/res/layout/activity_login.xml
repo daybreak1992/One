@@ -45,8 +45,8 @@
                 android:layout_toLeftOf="@id/btn_clear_account"
                 android:layout_toRightOf="@id/iv_account"
                 android:background="@null"
-                android:hint="@string/hint_phone_or_email"
-                android:inputType="phone|textEmailAddress"
+                android:hint="@string/hint_phone"
+                android:inputType="phone"
                 android:textColor="@color/color_333"
                 android:textColorHint="@color/color_ccc"
                 android:textSize="@dimen/dimen_16" />
@@ -87,8 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/dimen_10"
-                android:layout_toLeftOf="@+id/btn_password_state"
+                android:layout_alignParentRight="true"
                 app:srcCompat="@drawable/ic_cancel_black_24dp" />
 
             <EditText

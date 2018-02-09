@@ -2,13 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl_header_container"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dimen_180">
+    android:layout_height="@dimen/dimen_200">
 
     <ImageView
         android:id="@+id/iv_avatar"
         android:layout_width="@dimen/dimen_70"
         android:layout_height="@dimen/dimen_70"
-        android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
         android:src="@drawable/msg_head" />
 
@@ -19,7 +18,16 @@
         android:layout_below="@id/iv_avatar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/dimen_10"
-        android:text="@string/app_name"
         android:textColor="@color/color_333"
+        android:textSize="@dimen/dimen_16" />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimen_4"
+        android:textColor="@color/color_666"
         android:textSize="@dimen/dimen_14" />
 </RelativeLayout>

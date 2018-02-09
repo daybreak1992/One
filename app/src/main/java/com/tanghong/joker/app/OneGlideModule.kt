@@ -13,6 +13,7 @@ import com.bumptech.glide.load.engine.cache.MemorySizeCalculator
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.module.AppGlideModule
 import com.bumptech.glide.request.RequestOptions
+import com.tanghong.joker.R
 import java.io.InputStream
 
 
@@ -37,6 +38,7 @@ class OneGlideModule : AppGlideModule() {
     val diskCacheName = "one_image_cache"
     val options: RequestOptions = RequestOptions()
             .format(DecodeFormat.PREFER_RGB_565)
+            .placeholder(R.color.color_ccc)
 
     /**
      * isManifestParsingEnabled 设置清单解析，设置为false，避免添加相同的modules两次
@@ -49,8 +51,7 @@ class OneGlideModule : AppGlideModule() {
     override fun applyOptions(context: Context?, builder: GlideBuilder?) {
         builder?.setDefaultRequestOptions(options)
         //MemorySizeCalculator类通过考虑设备给定的可用内存和屏幕大小想出合理的默认大小，通过LruResourceCache进行缓存。
-        val calculator: MemorySizeCalculator
-                = MemorySizeCalculator.Builder(context)
+        val calculator: MemorySizeCalculator = MemorySizeCalculator.Builder(context)
                 .setMemoryCacheScreens(2f)
                 .build()
         builder?.setMemoryCache(LruResourceCache(calculator.memoryCacheSize.toLong()))

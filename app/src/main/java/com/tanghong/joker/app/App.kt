@@ -4,8 +4,12 @@ import android.app.Application
 import android.content.Context
 import com.squareup.leakcanary.LeakCanary
 import com.tanghong.commonlibrary.utils.AppUtils
+import com.tanghong.commonlibrary.utils.RxUtils
 import com.tencent.smtt.sdk.QbSdk
 import db.helper.DbHelper
+import io.reactivex.Flowable
+import io.reactivex.subscribers.ResourceSubscriber
+import model.User
 import kotlin.properties.Delegates
 
 /**
@@ -25,6 +29,31 @@ class App : Application() {
 
         var appContext: Context by Delegates.notNull<Context>()
             private set
+
+        var user: User? = null
+
+        fun resetUser(resetUser: User?) {
+            if (resetUser == null && user != null) {
+                Flowable.just(user)
+                        .map { t: User ->
+                            DbHelper.getUserDao().delete(t)
+                        }.compose(RxUtils.composeIo())
+                        .subscribeWith(object : ResourceSubscriber<Int>() {
+                            override fun onComplete() {
+                                dispose()
+                            }
+
+                            override fun onNext(t: Int?) {
+
+                            }
+
+                            override fun onError(t: Throwable?) {
+
+                            }
+                        })
+            }
+            user = resetUser
+        }
     }
 
     override fun onCreate() {

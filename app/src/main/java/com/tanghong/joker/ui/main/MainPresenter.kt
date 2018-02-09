@@ -1,8 +1,6 @@
 package com.tanghong.joker.ui.main
 
-import android.util.Log
 import com.tanghong.commonlibrary.base.BasePresenter
-import com.tanghong.commonlibrary.utils.JsonUtils
 import com.tanghong.commonlibrary.utils.RxUtils
 import com.tanghong.joker.app.Constants
 import com.tanghong.joker.createRepository
@@ -31,7 +29,6 @@ class MainPresenter : BasePresenter<MainContract.View>(), MainContract.Presenter
 
                                 override fun onNext(t: List<User>?) {
                                     if (t != null && !t.isEmpty()) {
-                                        Log.i("main", "user = ${JsonUtils.serializeToJson(t)}")
                                         rootView?.setUser(t)
                                     }
                                 }

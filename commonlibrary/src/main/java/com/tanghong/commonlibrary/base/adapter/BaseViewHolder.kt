@@ -43,7 +43,7 @@ class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun setText(id: Int, text: CharSequence): BaseViewHolder {
         val view = getView<TextView>(id)
-        view.text = text.toString()
+        view.text = text
         return this
     }
 

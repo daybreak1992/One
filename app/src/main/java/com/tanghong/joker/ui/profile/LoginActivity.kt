@@ -3,6 +3,7 @@ package com.tanghong.joker.ui.profile
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import com.tanghong.commonlibrary.base.BaseActivity
 import com.tanghong.joker.R
@@ -35,6 +36,9 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginContract.View, View.O
         setSupportActionBar(toolBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        btn_clear_account.visibility = View.GONE
+        btn_clear_password.visibility = View.GONE
+        btn_password_state.visibility = View.GONE
         btn_clear_account.setOnClickListener(this)
         btn_clear_password.setOnClickListener(this)
         btn_password_state.setOnClickListener(this)
@@ -49,7 +53,11 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginContract.View, View.O
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
+                if (TextUtils.isEmpty(s)) {
+                    btn_clear_account.visibility = View.GONE
+                } else {
+                    btn_clear_account.visibility = View.VISIBLE
+                }
             }
         })
         et_password.addTextChangedListener(object : TextWatcher {
@@ -62,7 +70,11 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginContract.View, View.O
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
+                if (TextUtils.isEmpty(s)) {
+                    btn_clear_password.visibility = View.GONE
+                } else {
+                    btn_clear_password.visibility = View.VISIBLE
+                }
             }
         })
         toolBar.setNavigationOnClickListener {
@@ -73,26 +85,35 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginContract.View, View.O
     override fun onClick(v: View) {
         when (v.id) {
             R.id.btn_clear_account -> {
-
+                et_account.setText("")
             }
             R.id.btn_clear_password -> {
-
+                et_password.setText("")
             }
             R.id.btn_password_state -> {
 
             }
             R.id.btn_login -> {
-                if (TextUtils.isEmpty(et_account.toString().trim())) {
+                if (TextUtils.isEmpty(et_account.text.toString().trim())) {
                     toast(R.string.prompt_intput_account)
                     return
                 }
-                if (TextUtils.isEmpty(et_password.toString().trim())) {
+                if (TextUtils.isEmpty(et_password.text.toString().trim())) {
                     toast(R.string.prompt_input_password)
                     return
                 }
+                if (et_account.text.toString().length > 11) {
+                    toast(R.string.prompt_intput_account_length)
+                    return
+                }
+                if (et_password.text.toString().length < 6) {
+                    toast(R.string.prompt_input_password_length)
+                    return
+                }
                 showProgress()
-                presenter.login("***+****+${et_account.toString().substring(7)}",
-                        Constants.sex, Constants.reg_type, Constants.uid)
+                val account = "***+****+${et_account.text.toString().substring(7)}"
+                Log.i("login", "account = $account")
+                presenter.login(account, Constants.sex, Constants.reg_type, Constants.uid)
             }
         }
     }

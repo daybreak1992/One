@@ -40,8 +40,10 @@
     <string name="btn_followed">已关注</string>
     <string name="btn_login">登录</string>
     <string name="title_login">登录</string>
-    <string name="hint_phone_or_email">手机号码/邮箱</string>
+    <string name="hint_phone">手机号码</string>
     <string name="hint_password">密码</string>
     <string name="prompt_intput_account">请输入账号</string>
     <string name="prompt_input_password">请输入密码</string>
+    <string name="prompt_input_password_length">请输入正确格式的密码</string>
+    <string name="prompt_intput_account_length">请输入正确格式的账号</string>
 </resources>

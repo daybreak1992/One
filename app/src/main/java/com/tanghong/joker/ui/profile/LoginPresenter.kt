@@ -1,8 +1,6 @@
 package com.tanghong.joker.ui.profile
 
-import android.util.Log
 import com.tanghong.commonlibrary.base.BasePresenter
-import com.tanghong.commonlibrary.utils.JsonUtils
 import com.tanghong.commonlibrary.utils.RxUtils
 import com.tanghong.joker.createRepository
 import db.helper.DbHelper
@@ -48,14 +46,12 @@ class LoginPresenter : BasePresenter<LoginContract.View>(), LoginContract.Presen
                     .subscribeWith(DataSubscriber<Result<User>>(object : DataCallback<Result<User>> {
                         override fun onSuccess(result: Result<User>) {
                             rootView?.setUser(result)
-                            Log.i("login", "onSuccess = ${JsonUtils.serializeToJson(result.data)}")
                             val copyUser = result.data.copy(user_id = user_id)
                             saveUsers(copyUser)
                         }
 
                         override fun onError(e: ApiException) {
                             rootView?.setError(e)
-                            Log.i("login", "onSuccess = $e.message")
                         }
                     }))
     )
@@ -102,11 +98,11 @@ class LoginPresenter : BasePresenter<LoginContract.View>(), LoginContract.Presen
                                 }
 
                                 override fun onNext(t: List<Long>?) {
-                                    Log.i("login", "onNext = ${JsonUtils.serializeToJson(t!!)}")
+
                                 }
 
                                 override fun onError(t: Throwable?) {
-                                    Log.i("login", "onError = ${t?.message}")
+
                                 }
                             })
             )

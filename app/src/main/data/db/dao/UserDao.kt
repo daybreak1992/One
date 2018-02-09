@@ -21,6 +21,12 @@ interface UserDao {
     @Update
     fun update(vararg user: User): Int
 
+    @Delete
+    fun delete(vararg user: User): Int
+
+    @Query("DELETE FROM user WHERE user_id = :user_id")
+    fun delete(user_id: String): Int
+
     @Query("SELECT * FROM user")
     fun queryAll(): Flowable<List<User>>
 }

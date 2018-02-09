@@ -71,7 +71,7 @@ object RetrofitManager {
             val request: Request
             val modifiedUrl = originalRequest.url().newBuilder()
                     // Provide your custom parameter here
-                    .addQueryParameter("user_id", Constants.user_id)
+                    .addQueryParameter("user_id", App.user?.user_id)
                     .addQueryParameter("sign", Constants.sign)
                     .addQueryParameter("uuid", Constants.uuid)
                     .addQueryParameter("channel", Constants.channel)

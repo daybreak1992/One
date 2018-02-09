@@ -12,8 +12,8 @@ import android.arch.persistence.room.PrimaryKey
  * </pre>
  */
 @Entity(tableName = "user")
-data class User(@PrimaryKey var user_id: String, var user_name: String, var desc: String,
-                var wb_name: String, var is_settled: String, var settled_type: String,
-                var summary: String, var fans_total: String, var web_url: String) {
-
+data class User constructor(@PrimaryKey var user_id: String = "", var user_name: String = "", var desc: String = "",
+                            var wb_name: String = "", var settled_type: String = "", var summary: String = "",
+                            var fans_total: String = "0", var web_url: String = "", var background: String = "",
+                            var score: String = "0") {
 }
