@@ -1,16 +1,16 @@
 RxJava2.x中提供了几个Subcriber对象，如下所示：
 
-DefaultSubscriber：通过实现Subscriber接口，可以通过调用request(long n)方法请求或者cancel()方法取消订阅（同步请求）
-public abstract class DefaultSubscriber<T> implements Subscriber<T>
+    1.DefaultSubscriber：通过实现Subscriber接口，可以通过调用request(long n)方法请求或者cancel()方法取消订阅（同步请求）
+    public abstract class DefaultSubscriber<T> implements Subscriber<T>
 
-DisposableSubscriber：通过实现Desposable异步删除。
-public abstract class DisposableSubscriber<T> implements Subscriber<T>, Disposable
+    2.DisposableSubscriber：通过实现Desposable异步删除。
+    public abstract class DisposableSubscriber<T> implements Subscriber<T>, Disposable
 
-ResourceSubscriber：允许异步取消其订阅相关资源，节省内存而且是线程安全。
-public abstract class ResourceSubscriber<T> implements Subscriber<T>, Disposable
+    3.ResourceSubscriber：允许异步取消其订阅相关资源，节省内存而且是线程安全。
+    public abstract class ResourceSubscriber<T> implements Subscriber<T>, Disposable
 
-SafeSubscriber：包装另一个订阅者,并确保所有onXXX方法遵守协议(序列化要求访问除外)。
-public final class SafeSubscriber<T> implements Subscriber<T>, Subscription
+    4.SafeSubscriber：包装另一个订阅者,并确保所有onXXX方法遵守协议(序列化要求访问除外)。
+    public final class SafeSubscriber<T> implements Subscriber<T>, Subscription
 
-SerializedSubscriber：序列化访问另一个订阅者的onNext,onError和onComplete方法。
-public final class SerializedSubscriber<T> implements Subscriber<T>, Subscription
+    5.SerializedSubscriber：序列化访问另一个订阅者的onNext,onError和onComplete方法。
+    public final class SerializedSubscriber<T> implements Subscriber<T>, Subscription
