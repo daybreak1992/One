@@ -28,4 +28,8 @@ interface TasksDataSource {
     fun login(user_name: String, sex: String, reg_type: String, uid: String): Flowable<Result<Account>>
 
     fun getUser(id: String, user_id: String, token: String): Flowable<Result<User>>
+
+    fun getUser(id: String): Flowable<Result<User>>
+
+    fun getSearchWord(type: String, word: String, page: Int): Flowable<Result<Search>>
 }

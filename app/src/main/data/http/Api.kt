@@ -42,6 +42,9 @@ interface Api {
     @GET("user/info/{id}")
     fun getUser(@Path("id") id: String, @Query("user_id") user_id: String, @Query("jwt") token: String): Flowable<Result<User>>
 
+    @GET("user/info/{id}")
+    fun getUser(@Path("id") id: String): Flowable<Result<User>>
+
     @GET("search/{type}/{word}/{page}")
     fun getSearchWord(@Path("type") type: String, @Path("word") word: String, @Path("page") page: Int): Flowable<Result<Search>>
 }

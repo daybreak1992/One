@@ -1,6 +1,13 @@
 package com.tanghong.joker.ui.search
 
 import com.tanghong.commonlibrary.base.BasePresenter
+import com.tanghong.commonlibrary.utils.RxUtils
+import com.tanghong.joker.createRepository
+import http.ApiException
+import http.DataCallback
+import http.DataSubscriber
+import model.Result
+import model.Search
 
 /**
  * <pre>
@@ -12,5 +19,17 @@ import com.tanghong.commonlibrary.base.BasePresenter
  */
 class SearchDetailPresenter : BasePresenter<SearchDetailContract.View>(), SearchDetailContract.Presenter {
 
+    override fun loadSearchWord(isRefresh: Boolean, type: String, word: String, page: Int) = addSubscription(
+            createRepository().getSearchWord(type, word, page)
+                    .compose(RxUtils.composeIo())
+                    .subscribeWith(DataSubscriber<Result<Search>>(object : DataCallback<Result<Search>> {
+                        override fun onSuccess(result: Result<Search>) {
+                            rootView?.setSearchWord(isRefresh, result)
+                        }
 
+                        override fun onError(e: ApiException) {
+                            rootView?.setError(isRefresh, e)
+                        }
+                    }))
+    )
 }

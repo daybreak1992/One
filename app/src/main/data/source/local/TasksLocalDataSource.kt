@@ -32,9 +32,12 @@ class TasksLocalDataSource private constructor() {
         }
     }
 
-    fun saveAccount(vararg account: Account): List<Long> = DbHelper.getAccountDao().insert(*account)
+    fun saveAccount(vararg account: Account): List<Long> =
+            DbHelper.getAccountDao().insert(*account)
 
-    fun saveUser(vararg user: User): List<Long> = DbHelper.getUserDao().insert(*user)
+    fun saveUser(vararg user: User): List<Long> =
+            DbHelper.getUserDao().insert(*user)
 
-    fun getUser(): Flowable<List<User>> = DbHelper.getUserDao().queryAll()
+    fun getUser(): Flowable<List<User>> =
+            DbHelper.getUserDao().queryAll()
 }

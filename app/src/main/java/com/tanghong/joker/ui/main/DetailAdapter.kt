@@ -12,7 +12,9 @@ import com.tanghong.commonlibrary.utils.ScreenUtils
 import com.tanghong.commonlibrary.utils.TimeDateUtils
 import com.tanghong.joker.R
 import com.tanghong.joker.glide
+import com.tanghong.joker.openPage
 import com.tanghong.joker.ui.other.X5WebViewFactory
+import com.tanghong.joker.ui.profile.UserInfoActivity
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import model.Comment
 
@@ -65,6 +67,11 @@ class DetailAdapter(datas: ArrayList<Any>) : BaseAdapter<Any>(datas,
                     }
                     holder.getView<ImageView>(R.id.iv_avatar).glide(user.web_url,
                             RequestOptions.bitmapTransform(RoundedCornersTransformation(ScreenUtils.dip2px(20f), 0)))
+                    holder.getView<ImageView>(R.id.iv_avatar).setOnClickListener {
+                        context.openPage(UserInfoActivity::class.java, hashMapOf<String, String>(
+                                "id" to user.user_id
+                        ))
+                    }
                 }
             }
             else -> {

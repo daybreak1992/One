@@ -60,13 +60,13 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
 
     override fun initView() {
         presenter.attachView(this)
-        setSupportActionBar(toolBar)
-        val toggle = ActionBarDrawerToggle(this, drawer_main, toolBar, R.string.drawer_open, R.string.drawer_close)
+        setSupportActionBar(toolbar)
+        val toggle = ActionBarDrawerToggle(this, drawer_main, toolbar, R.string.drawer_open, R.string.drawer_close)
         toggle.syncState()
         drawer_main.addDrawerListener(toggle)
         initNavigationHeader()
 
-        toolBar.setNavigationOnClickListener { drawer_main.openDrawer(Gravity.START) }
+        toolbar.setNavigationOnClickListener { drawer_main.openDrawer(Gravity.START) }
         bnv_navigation.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
             switchFragment(false, item.itemId)
             true
@@ -75,8 +75,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
             drawer_main.closeDrawer(Gravity.START)
             when (item.itemId) {
                 R.id.menu_setting -> {
-                    App.resetUser(null)
-                    initNavigationHeader(App.user)
+
                 }
             }
             true
@@ -129,9 +128,9 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
     }
 
     private fun initNavigationHeader(user: User?) {
-        val color_white = ContextCompat.getColor(this, R.color.white)
+        val colorPrimary = ContextCompat.getColor(this, R.color.colorPrimary)
         if (user == null) {
-            rl_header_container?.backgroundColor = color_white
+            rl_header_container?.backgroundColor = colorPrimary
             iv_avater?.imageResource = R.drawable.msg_head
             tv_name?.text = ""
             tv_desc?.text = ""
@@ -146,7 +145,8 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
                         override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
                             val bitmapDrawable: BitmapDrawable = resource as BitmapDrawable
                             Palette.from(bitmapDrawable.bitmap).generate { palette: Palette? ->
-                                rl_header_container?.backgroundColor = palette?.getMutedColor(color_white) ?: color_white
+                                rl_header_container?.backgroundColor = palette?.getDarkVibrantColor(colorPrimary)
+                                        ?: colorPrimary
                             }
                             return false
                         }
@@ -169,7 +169,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
         hideFragments(transaction)
         when (itemId) {
             R.id.navigation_home -> {
-                toolBar.setTitle(R.string.title_home)
+                toolbar.setTitle(R.string.title_home)
                 menuDate?.isVisible = true
                 if (homeFragment == null) {
                     homeFragment = HomeFragment.getInstance()
@@ -179,7 +179,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
                 }
             }
             R.id.navigation_search -> {
-                toolBar.setTitle(R.string.title_search)
+                toolbar.setTitle(R.string.title_search)
                 menuSearch?.isVisible = true
                 if (searchFragment == null) {
                     searchFragment = SearchFragment.getInstance()
@@ -189,7 +189,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
                 }
             }
             R.id.navigation_message -> {
-                toolBar.setTitle(R.string.title_message)
+                toolbar.setTitle(R.string.title_message)
                 if (messageFragment == null) {
                     messageFragment = MessageFragment.getInstance()
                     transaction.add(R.id.fl_content, messageFragment, "message")

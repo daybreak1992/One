@@ -32,8 +32,8 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginContract.View, View.O
 
     override fun initView() {
         presenter.attachView(this)
-        toolBar.setTitle(R.string.title_login)
-        setSupportActionBar(toolBar)
+        toolbar.setTitle(R.string.title_login)
+        setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         btn_clear_account.visibility = View.GONE
@@ -77,7 +77,7 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginContract.View, View.O
                 }
             }
         })
-        toolBar.setNavigationOnClickListener {
+        toolbar.setNavigationOnClickListener {
             finish()
         }
     }

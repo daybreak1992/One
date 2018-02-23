@@ -38,7 +38,7 @@ class OneGlideModule : AppGlideModule() {
     val diskCacheName = "one_image_cache"
     val options: RequestOptions = RequestOptions()
             .format(DecodeFormat.PREFER_RGB_565)
-            .placeholder(R.color.color_ccc)
+            .placeholder(R.color.colorPrimary)
 
     /**
      * isManifestParsingEnabled 设置清单解析，设置为false，避免添加相同的modules两次

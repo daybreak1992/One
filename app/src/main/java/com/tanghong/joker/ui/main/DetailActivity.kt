@@ -38,7 +38,7 @@ class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
     override fun initView() {
         window.setFormat(PixelFormat.TRANSLUCENT)
         presenter.attachView(this)
-        setSupportActionBar(toolBar)
+        setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         rv_detail.layoutManager = LinearLayoutManager(this)
         detailAdapter = DetailAdapter(detailList)
@@ -46,7 +46,7 @@ class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
         srl_detail.setRefreshHeader(ClassicsHeader(this))
         srl_detail.setRefreshFooter(ClassicsFooter(this))
 
-        toolBar.setNavigationOnClickListener {
+        toolbar.setNavigationOnClickListener {
             finish()
         }
         srl_detail.setOnRefreshLoadmoreListener(object : OnRefreshLoadmoreListener {
@@ -64,7 +64,7 @@ class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
     override fun initData() {
         id = intent.getStringExtra("id")
         val type = intent.getStringExtra("category")
-        source_id = intent.getStringExtra("source_id")
+        source_id = intent.getStringExtra("source_id") ?: ""
 
         when (type) {
             Content.article.toString() -> category = Content.essay_detail
@@ -94,7 +94,7 @@ class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
     }
 
     override fun setDetailData(result: Result<Detail>) {
-        toolBar.title = result.data.title
+        toolbar.title = result.data.title
         detailList.clear()
         detailList.add(result.data.html_content)
         detailAdapter?.notifyDataSetChanged()

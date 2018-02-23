@@ -30,13 +30,13 @@ class CategoryActivity : BaseActivity<CategoryPresenter>(), CategoryContract.Vie
 
     override fun initView() {
         presenter.attachView(this)
-        setSupportActionBar(toolBar)
+        setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         rl_container.addView(X5WebViewFactory.createWebView(this))
         srl_category.isEnableLoadmore = false
         srl_category.refreshHeader = ClassicsHeader(this)
 
-        toolBar.setNavigationOnClickListener {
+        toolbar.setNavigationOnClickListener {
             finish()
         }
         srl_category.setOnRefreshLoadmoreListener(object : OnRefreshLoadmoreListener {

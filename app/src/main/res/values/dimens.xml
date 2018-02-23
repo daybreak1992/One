@@ -2,6 +2,7 @@
     <dimen name="main_margin_16">16dp</dimen>
     <dimen name="toolbar_padding_top">0dp</dimen>
 
+    <dimen name="dimen_0">0dp</dimen>
     <dimen name="dimen_0.5">0.5dp</dimen>
     <dimen name="dimen_1">1dp</dimen>
     <dimen name="dimen_2">2dp</dimen>
@@ -31,4 +32,7 @@
     <dimen name="dimen_160">160dp</dimen>
     <dimen name="dimen_180">180dp</dimen>
     <dimen name="dimen_200">200dp</dimen>
+    <dimen name="dimen_220">220dp</dimen>
+    <dimen name="dimen_240">240dp</dimen>
+    <dimen name="dimen_300">300dp</dimen>
 </resources>

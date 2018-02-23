@@ -44,5 +44,13 @@ data class Content(var id: String, var category: String, var display_category: S
         val category_music = "音乐"
         val category_movie = "影视"
         val category_radio = "电台"
+        val category_author = "作者"
+
+        val tag_illustration = "hp"
+        val tag_reading = "reading"
+        val tag_music = "music"
+        val tag_movie = "movie"
+        val tag_radio = "radio"
+        val tag_author = "author"
     }
 }
