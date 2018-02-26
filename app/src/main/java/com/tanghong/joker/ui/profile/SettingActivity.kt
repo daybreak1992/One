@@ -41,8 +41,10 @@ class SettingActivity : BaseActivity<SettingPresenter>(), SettingContract.View, 
         tv_app_version.text = AppUtils.getVerName()
         if (App.isLogin()) {
             rl_exit_login.visibility = View.VISIBLE
+            v_line_divider.visibility = View.VISIBLE
         } else {
             rl_exit_login.visibility = View.GONE
+            v_line_divider.visibility = View.GONE
         }
         presenter.getCacheSize()
     }

@@ -1,6 +1,7 @@
 package com.tanghong.joker.ui.main
 
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -45,7 +46,27 @@ class DetailAdapter(datas: ArrayList<Any>) : BaseAdapter<Any>(datas,
                     hasInitWebView = true
                     val fl_container = holder.getViewGroup<FrameLayout>(R.id.fl_container)
                     fl_container.addView(BridgeWebViewFactory.createWebView(context))
-                    BridgeWebViewFactory.loadDataWithBaseURL("", data, "text/html", "UTF-8", "");
+                    BridgeWebViewFactory.getBridgeWebView()?.registerHandler("prepareAudios",
+                            { data, function ->
+                                Log.i("detail", "prepareAudios = $data")
+                            })
+                    BridgeWebViewFactory.getBridgeWebView()?.registerHandler("prepareAudios", { data, function ->
+                        Log.i("webView", "prepareAudios = $data")
+                    })
+                    BridgeWebViewFactory.getBridgeWebView()?.registerHandler("playAudio", { data, function ->
+                        Log.i("webView", "playAudio = $data")
+                    })
+                    BridgeWebViewFactory.getBridgeWebView()?.registerHandler("playRadio", { data, function ->
+                        Log.i("webView", "playRadio = $data")
+                    })
+                    BridgeWebViewFactory.getBridgeWebView()?.registerHandler("playMusic", { data, function ->
+                        Log.i("webView", "playMusic = $data")
+                    })
+                    BridgeWebViewFactory.getBridgeWebView()?.registerHandler("followAuthor", { data, function ->
+                        Log.i("webView", "followAuthor = $data")
+                    })
+                    BridgeWebViewFactory.loadDataWithBaseURL("", data, "text/html",
+                            "utf-8", "");
                 }
             }
             is Comment -> {

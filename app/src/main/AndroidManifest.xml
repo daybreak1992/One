@@ -53,6 +53,9 @@
             android:name=".ui.profile.SettingActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.other.WebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.tencent.smtt.sdk.VideoActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="orientation|screenSize|keyboardHidden"

@@ -10,7 +10,9 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener
 import com.tanghong.commonlibrary.base.BaseActivity
 import com.tanghong.commonlibrary.utils.JsonUtils
 import com.tanghong.joker.R
+import com.tanghong.joker.openPage
 import com.tanghong.joker.ui.other.BridgeWebViewFactory
+import com.tanghong.joker.ui.other.WebViewActivity
 import http.ApiException
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -61,6 +63,11 @@ class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
                 onRefresh()
             }
         })
+        btn_web.setOnClickListener {
+            openPage(WebViewActivity::class.java, hashMapOf<String, String>(
+                    "web_data" to detailList[0] as String
+            ))
+        }
     }
 
     override fun initData() {
