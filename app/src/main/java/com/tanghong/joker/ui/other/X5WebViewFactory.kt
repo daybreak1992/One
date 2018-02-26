@@ -46,9 +46,9 @@ object X5WebViewFactory {
 //        webSettings.setDatabaseEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webSettings.setGeolocationEnabled(true);
-        webSettings.setAppCacheMaxSize(Long.MAX_VALUE);
-        webSettings.setAppCachePath(App.appContext.getDir("AppCache", 0).getPath());
-        webSettings.setDatabasePath(App.appContext.getDir("Database", 0).getPath());
+        webSettings.setAppCacheMaxSize(10 * 1024 * 1024);
+        webSettings.setAppCachePath(App.appContext.getDir("one_cache", 0).getPath());
+        webSettings.setDatabasePath(App.appContext.getDir("one_datbase", 0).getPath());
         webSettings.setGeolocationDatabasePath(App.appContext.getDir("GeolocationDatabase", 0).getPath());
 //        webSettings.setPageCacheCapacity(IX5WebSettings.DEFAULT_CACHE_CAPACITY);
         webSettings.setPluginState(WebSettings.PluginState.ON_DEMAND);

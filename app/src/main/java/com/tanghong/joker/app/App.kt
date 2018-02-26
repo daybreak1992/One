@@ -57,6 +57,8 @@ class App : Application() {
             }
             user = resetUser
         }
+
+        fun isLogin(): Boolean = user != null
     }
 
     override fun onCreate() {

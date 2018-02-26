@@ -2,13 +2,15 @@ package com.tanghong.joker.ui.main
 
 import android.graphics.PixelFormat
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener
 import com.tanghong.commonlibrary.base.BaseActivity
+import com.tanghong.commonlibrary.utils.JsonUtils
 import com.tanghong.joker.R
-import com.tanghong.joker.ui.other.X5WebViewFactory
+import com.tanghong.joker.ui.other.BridgeWebViewFactory
 import http.ApiException
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -106,6 +108,15 @@ class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
         closeProgress()
         if (isRefresh) {
             srl_detail.finishRefresh()
+
+            val commentRoot = CommentRoot(result.data.data.subList(0, 1).size.toString(),
+                    result.data.data.subList(0, 1), result.data.data.subList(0, 1))
+            Log.i("detail", JsonUtils.serializeToJson(commentRoot))
+            BridgeWebViewFactory.getBridgeWebView()?.callHandler("setComments",
+                    JsonUtils.serializeToJson(commentRoot),
+                    { data ->
+                        Log.i("detail", data)
+                    })
         } else {
             if (result.data.data.isEmpty()) {
                 srl_detail.finishLoadmoreWithNoMoreData()
@@ -130,6 +141,6 @@ class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
     override fun onDestroy() {
         super.onDestroy()
         presenter.detachView()
-        X5WebViewFactory.destroyWebView()
+        BridgeWebViewFactory.destroyWebView()
     }
 }

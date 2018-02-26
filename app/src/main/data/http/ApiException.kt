@@ -8,8 +8,7 @@ package http
  *     version: 1.0
  * </pre>
  */
-class ApiException(res: Int, msg: String) : Throwable(msg) {
+class ApiException(val code: Int, msg: String) : Throwable(msg) {
 
-    var res: Int? = res
 
 }

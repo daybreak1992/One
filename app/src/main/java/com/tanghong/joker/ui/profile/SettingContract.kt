@@ -15,9 +15,15 @@ interface SettingContract {
 
     interface View : IBaseView {
 
+        fun setCacheSize(size: String)
+
+        fun setClearCache(success: Boolean)
     }
 
     interface Presenter : IPresenter<View> {
 
+        fun getCacheSize()
+
+        fun clearCache()
     }
 }

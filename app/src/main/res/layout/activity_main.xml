@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/bnv_navigation"
-            android:layout_below="@+id/toolBar" />
+            android:layout_below="@+id/toolbar" />
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bnv_navigation"

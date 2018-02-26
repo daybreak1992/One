@@ -11,10 +11,14 @@
         android:orientation="vertical"
         android:paddingTop="@dimen/dimen_40">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_margin_16"
+            android:background="@color/color_f5" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_48"
-            android:layout_marginBottom="@dimen/main_margin_16"
             android:paddingLeft="@dimen/main_margin_16"
             android:paddingRight="@dimen/main_margin_16">
 
@@ -43,10 +47,14 @@
                 android:textSize="@dimen/main_margin_16" />
         </RelativeLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_margin_16"
+            android:background="@color/color_f5" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_48"
-            android:layout_marginBottom="@dimen/main_margin_16"
             android:paddingLeft="@dimen/main_margin_16"
             android:paddingRight="@dimen/main_margin_16">
 
@@ -75,10 +83,14 @@
                 android:textSize="@dimen/main_margin_16" />
         </RelativeLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_margin_16"
+            android:background="@color/color_f5" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_48"
-            android:layout_marginBottom="@dimen/main_margin_16"
             android:paddingLeft="@dimen/main_margin_16"
             android:paddingRight="@dimen/main_margin_16">
 
@@ -107,10 +119,14 @@
                 android:textSize="@dimen/main_margin_16" />
         </RelativeLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_margin_16"
+            android:background="@color/color_f5" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_48"
-            android:layout_marginBottom="@dimen/main_margin_16"
             android:paddingLeft="@dimen/main_margin_16"
             android:paddingRight="@dimen/main_margin_16">
 
@@ -139,10 +155,14 @@
                 android:textSize="@dimen/main_margin_16" />
         </RelativeLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_margin_16"
+            android:background="@color/color_f5" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_48"
-            android:layout_marginBottom="@dimen/main_margin_16"
             android:paddingLeft="@dimen/main_margin_16"
             android:paddingRight="@dimen/main_margin_16">
 
@@ -171,10 +191,14 @@
                 android:textSize="@dimen/main_margin_16" />
         </RelativeLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_margin_16"
+            android:background="@color/color_f5" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_48"
-            android:layout_marginBottom="@dimen/main_margin_16"
             android:paddingLeft="@dimen/main_margin_16"
             android:paddingRight="@dimen/main_margin_16">
 
@@ -202,5 +226,10 @@
                 android:textColor="@color/color_666"
                 android:textSize="@dimen/main_margin_16" />
         </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_margin_16"
+            android:background="@color/color_f5" />
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

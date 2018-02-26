@@ -50,6 +50,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoTitle" />
         <activity
+            android:name=".ui.profile.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.tencent.smtt.sdk.VideoActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -71,5 +74,16 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <!-- appwidgetprovider -->
+        <receiver android:name=".provider.MusicWidgetProvider">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/app_widget_provider_music" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.tanghong.joker.action.CLICK" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>

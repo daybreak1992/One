@@ -27,6 +27,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="@dimen/main_margin_16"
         android:layout_marginRight="@dimen/main_margin_16"
-        android:textColor="@color/color_666"
+        android:textColor="@color/color_999"
         android:textSize="@dimen/dimen_16" />
 </RelativeLayout>

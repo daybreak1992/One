@@ -8,6 +8,6 @@ package model
  *     version: 1.0
  * </pre>
  */
-data class CommentRoot(var count: String, var data: List<Comment>) {
+data class CommentRoot(var count: String, var data: List<Comment>, var comments: List<Comment>) {
 
 }

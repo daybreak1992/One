@@ -5,7 +5,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener
 import com.tanghong.commonlibrary.base.BaseActivity
 import com.tanghong.joker.R
-import com.tanghong.joker.ui.other.X5WebViewFactory
+import com.tanghong.joker.ui.other.BridgeWebViewFactory
 import http.ApiException
 import kotlinx.android.synthetic.main.activity_category.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -32,7 +32,7 @@ class CategoryActivity : BaseActivity<CategoryPresenter>(), CategoryContract.Vie
         presenter.attachView(this)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        rl_container.addView(X5WebViewFactory.createWebView(this))
+        rl_container.addView(BridgeWebViewFactory.createWebView(this))
         srl_category.isEnableLoadmore = false
         srl_category.refreshHeader = ClassicsHeader(this)
 
@@ -78,7 +78,7 @@ class CategoryActivity : BaseActivity<CategoryPresenter>(), CategoryContract.Vie
     override fun setCategory(result: Category) {
         closeProgress()
         srl_category.finishRefresh()
-        X5WebViewFactory.loadDataWithBaseURL("", result.html_content, "text/html", "UTF-8", "");
+        BridgeWebViewFactory.loadDataWithBaseURL("", result.html_content, "text/html", "UTF-8", "");
     }
 
     override fun setError(e: ApiException) {
@@ -89,6 +89,6 @@ class CategoryActivity : BaseActivity<CategoryPresenter>(), CategoryContract.Vie
     override fun onDestroy() {
         super.onDestroy()
         presenter.detachView()
-        X5WebViewFactory.destroyWebView()
+        BridgeWebViewFactory.destroyWebView()
     }
 }

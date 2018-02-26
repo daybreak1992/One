@@ -9,7 +9,7 @@
         android:id="@+id/srl_category"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolBar">
+        android:layout_below="@+id/toolbar">
 
         <RelativeLayout
             android:id="@+id/rl_container"

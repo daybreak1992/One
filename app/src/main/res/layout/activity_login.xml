@@ -10,7 +10,7 @@
         android:id="@+id/rl_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolBar"
+        android:layout_below="@+id/toolbar"
         android:layout_margin="@dimen/main_margin_16"
         android:background="@drawable/shape_login_input_bg">
 

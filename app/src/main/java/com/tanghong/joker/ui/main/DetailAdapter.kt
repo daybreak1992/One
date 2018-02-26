@@ -13,7 +13,7 @@ import com.tanghong.commonlibrary.utils.TimeDateUtils
 import com.tanghong.joker.R
 import com.tanghong.joker.glide
 import com.tanghong.joker.openPage
-import com.tanghong.joker.ui.other.X5WebViewFactory
+import com.tanghong.joker.ui.other.BridgeWebViewFactory
 import com.tanghong.joker.ui.profile.UserInfoActivity
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import model.Comment
@@ -44,8 +44,8 @@ class DetailAdapter(datas: ArrayList<Any>) : BaseAdapter<Any>(datas,
                 if (!hasInitWebView) {
                     hasInitWebView = true
                     val fl_container = holder.getViewGroup<FrameLayout>(R.id.fl_container)
-                    fl_container.addView(X5WebViewFactory.createWebView(context))
-                    X5WebViewFactory.loadDataWithBaseURL("", data, "text/html", "UTF-8", "");
+                    fl_container.addView(BridgeWebViewFactory.createWebView(context))
+                    BridgeWebViewFactory.loadDataWithBaseURL("", data, "text/html", "UTF-8", "");
                 }
             }
             is Comment -> {

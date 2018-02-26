@@ -10,7 +10,7 @@
         android:id="@+id/srl_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolBar">
+        android:layout_below="@+id/toolbar">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_detail"

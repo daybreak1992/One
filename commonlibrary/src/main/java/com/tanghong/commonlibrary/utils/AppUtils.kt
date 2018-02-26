@@ -69,5 +69,13 @@ class AppUtils private constructor() {
          */
         val sdkVersion: Int
             get() = android.os.Build.VERSION.SDK_INT
+
+        fun getCacheSize(): String {
+            return FileUtils.getDirSize(context.cacheDir)
+        }
+
+        fun clearCache(): Boolean {
+            return FileUtils.deleteFilesInDir(context.cacheDir)
+        }
     }
 }

@@ -22,13 +22,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.scwang.smartrefresh.layout.util.DensityUtil
 import com.tanghong.commonlibrary.base.BaseActivity
-import com.tanghong.commonlibrary.utils.JsonUtils
 import com.tanghong.joker.R
 import com.tanghong.joker.app.App
 import com.tanghong.joker.glide
 import com.tanghong.joker.openPage
 import com.tanghong.joker.ui.message.MessageFragment
 import com.tanghong.joker.ui.profile.LoginActivity
+import com.tanghong.joker.ui.profile.SettingActivity
 import com.tanghong.joker.ui.search.SearchFragment
 import http.ApiException
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
@@ -38,7 +38,6 @@ import model.User
 import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.toast
-
 
 class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
     private var homeFragment: HomeFragment? = null
@@ -60,6 +59,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
 
     override fun initView() {
         presenter.attachView(this)
+        toolbar.setTitle(getString(R.string.title_home))
         setSupportActionBar(toolbar)
         val toggle = ActionBarDrawerToggle(this, drawer_main, toolbar, R.string.drawer_open, R.string.drawer_close)
         toggle.syncState()
@@ -75,7 +75,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
             drawer_main.closeDrawer(Gravity.START)
             when (item.itemId) {
                 R.id.menu_setting -> {
-
+                    openPage(SettingActivity::class.java)
                 }
             }
             true
@@ -157,7 +157,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
     }
 
     override fun setError(e: ApiException) {
-        Log.i("main", "e = ${JsonUtils.serializeToJson(e)}")
+        initNavigationHeader(App.user)
     }
 
     private fun switchFragment(isInit: Boolean, itemId: Int) {
