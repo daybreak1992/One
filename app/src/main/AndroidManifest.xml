@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tanghong.joker">
+    package="com.tanghong.one">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".app.App"
+        android:name="com.tanghong.one.app.App"
         android:allowBackup="true"
         android:icon="@mipmap/one_icon"
         android:label="@string/app_name"
@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.other.SplashActivity"
+            android:name="com.tanghong.one.ui.other.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
@@ -28,32 +28,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name="com.tanghong.one.ui.main.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoTitle" />
         <activity
-            android:name=".ui.main.DetailActivity"
+            android:name="com.tanghong.one.ui.main.DetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".ui.search.SearchDetailActivity"
+            android:name="com.tanghong.one.ui.search.SearchDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.profile.CategoryActivity"
+            android:name="com.tanghong.one.ui.profile.CategoryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.profile.LoginActivity"
+            android:name="com.tanghong.one.ui.profile.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.profile.UserInfoActivity"
+            android:name="com.tanghong.one.ui.profile.UserInfoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoTitle" />
         <activity
-            android:name=".ui.profile.SettingActivity"
+            android:name="com.tanghong.one.ui.profile.SettingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.other.WebViewActivity"
+            android:name="com.tanghong.one.ui.other.WebViewActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.tencent.smtt.sdk.VideoActivity"
@@ -79,7 +79,7 @@
         </provider>
 
         <!-- appwidgetprovider -->
-        <receiver android:name=".provider.MusicWidgetProvider">
+        <receiver android:name="com.tanghong.one.provider.MusicWidgetProvider">
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/app_widget_provider_music" />

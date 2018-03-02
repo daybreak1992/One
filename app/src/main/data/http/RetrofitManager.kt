@@ -1,8 +1,8 @@
 package http
 
 import com.tanghong.commonlibrary.utils.NetworkUtils
-import com.tanghong.joker.app.App
-import com.tanghong.joker.app.Constants
+import com.tanghong.one.app.App
+import com.tanghong.one.app.Constants
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

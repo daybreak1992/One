@@ -1,6 +1,6 @@
 package http
 
-import com.tanghong.joker.app.Constants
+import com.tanghong.one.app.Constants
 import io.reactivex.subscribers.ResourceSubscriber
 import model.Result
 
