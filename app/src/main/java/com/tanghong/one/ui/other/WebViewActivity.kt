@@ -93,8 +93,9 @@ class WebViewActivity : BaseActivity<WebViewPresenter>(), WebViewContract.View {
     }
 
     override fun initData() {
-        bwv.loadDataWithBaseURL("", intent.getStringExtra("web_data"), "text/html",
-                "utf-8", "")
+        bwv.loadData(intent.getStringExtra("web_data"), "text/html", "utf-8")
+//        bwv.loadDataWithBaseURL("", intent.getStringExtra("web_data"), "text/html",
+//                "utf-8", "")
     }
 
     override fun start() {
