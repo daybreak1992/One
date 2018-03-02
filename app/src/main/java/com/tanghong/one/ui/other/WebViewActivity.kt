@@ -32,6 +32,10 @@ class WebViewActivity : BaseActivity<WebViewPresenter>(), WebViewContract.View {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(true)
         }
@@ -52,7 +56,7 @@ class WebViewActivity : BaseActivity<WebViewPresenter>(), WebViewContract.View {
         bwv.webViewClient = object : BridgeWebViewClient(bwv) {
 
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                return false
+                return super.shouldOverrideUrlLoading(view, url)
             }
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
@@ -90,12 +94,21 @@ class WebViewActivity : BaseActivity<WebViewPresenter>(), WebViewContract.View {
         bwv.registerHandler("followAuthor", { data, function ->
             Log.i("webView", "followAuthor = $data")
         })
+        bwv.registerHandler("playReadingAudio", { data, function ->
+            Log.i("webView", "playReadingAudio = $data")
+        })
+        bwv.registerHandler("stopReadingAudio", { data, function ->
+            Log.i("webView", "stopReadingAudio = $data")
+        })
+        bwv.registerHandler("toggleNavbar", { data, function ->
+            Log.i("webView", "toggleNavbar = $data")
+        })
     }
 
     override fun initData() {
-        bwv.loadData(intent.getStringExtra("web_data"), "text/html", "utf-8")
-//        bwv.loadDataWithBaseURL("", intent.getStringExtra("web_data"), "text/html",
-//                "utf-8", "")
+//        bwv.loadData(intent.getStringExtra("web_data"), "text/html", "utf-8")
+        bwv.loadDataWithBaseURL("", intent.getStringExtra("web_data"), "text/html",
+                "utf-8", "")
     }
 
     override fun start() {

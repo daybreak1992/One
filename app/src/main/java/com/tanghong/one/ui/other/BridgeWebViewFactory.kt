@@ -78,6 +78,10 @@ object BridgeWebViewFactory {
         bridgeWebView?.loadDataWithBaseURL(baseUrl, data, mimeType, encoding, historyUrl)
     }
 
+    fun loadData(data: String, mimeType: String, encoding: String) {
+        bridgeWebView?.loadData(data, mimeType, encoding)
+    }
+
     fun loadUrl(url: String) {
         bridgeWebView?.loadUrl(url)
     }

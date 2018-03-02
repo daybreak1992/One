@@ -65,8 +65,18 @@ class DetailAdapter(datas: ArrayList<Any>) : BaseAdapter<Any>(datas,
                     BridgeWebViewFactory.getBridgeWebView()?.registerHandler("followAuthor", { data, function ->
                         Log.i("webView", "followAuthor = $data")
                     })
+                    BridgeWebViewFactory.getBridgeWebView()?.registerHandler("playReadingAudio", { data, function ->
+                        Log.i("webView", "playReadingAudio = $data")
+                    })
+                    BridgeWebViewFactory.getBridgeWebView()?.registerHandler("stopReadingAudio", { data, function ->
+                        Log.i("webView", "stopReadingAudio = $data")
+                    })
+                    BridgeWebViewFactory.getBridgeWebView()?.registerHandler("toggleNavbar", { data, function ->
+                        Log.i("webView", "toggleNavbar = $data")
+                    })
                     BridgeWebViewFactory.loadDataWithBaseURL("", data, "text/html",
                             "utf-8", "");
+//                    BridgeWebViewFactory.loadData(data, "text/html", "utf-8")
                 }
             }
             is Comment -> {
