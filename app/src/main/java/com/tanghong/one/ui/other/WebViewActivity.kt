@@ -1,5 +1,9 @@
 package com.tanghong.one.ui.other
 
+import android.annotation.SuppressLint
+import android.app.ActivityManager
+import android.content.ComponentCallbacks2
+import android.content.Context
 import android.graphics.Bitmap
 import android.os.Build
 import android.util.Log
@@ -112,7 +116,25 @@ class WebViewActivity : BaseActivity<WebViewPresenter>(), WebViewContract.View {
     }
 
     override fun start() {
+        Log.i("webView", "heapSize = ${getHeapSize()}MB")
+    }
 
+    fun getHeapSize(): String {
+        val manager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        return "" + manager.memoryClass
+    }
+
+    @SuppressLint("SwitchIntDef")
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        when (level) {
+            ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN -> {
+
+            }
+            else -> {
+
+            }
+        }
     }
 
     override fun onDestroy() {
