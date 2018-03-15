@@ -9,8 +9,9 @@ ext {
     ]
 
     kotlin = [
-            kotlinVersion: '1.2.21',
-            ankoVersion  : "0.10.4"
+            kotlinVersion: '1.2.30',
+            ankoVersion  : "0.10.4",
+            ktxVersion   : "0.2"
     ]
 
     dependVersion = [
@@ -44,7 +45,8 @@ ext {
 
     kotlinDeps = [
             kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin.kotlinVersion",
-            anko  : "org.jetbrains.anko:anko:$kotlin.ankoVersion"
+            anko  : "org.jetbrains.anko:anko:$kotlin.ankoVersion",
+            ktx   : "androidx.core:core-ktx:$kotlin.ktxVersion"
     ]
 
     retrofit = [

@@ -27,7 +27,6 @@ import com.tanghong.one.app.App
 import com.tanghong.one.glide
 import com.tanghong.one.openPage
 import com.tanghong.one.ui.message.MessageFragment
-import com.tanghong.one.ui.other.SurfaceViewActivity
 import com.tanghong.one.ui.profile.LoginActivity
 import com.tanghong.one.ui.profile.SettingActivity
 import com.tanghong.one.ui.search.SearchFragment
@@ -237,8 +236,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
         item?.run {
             when (itemId) {
                 R.id.menu_date -> {
-                    openPage(SurfaceViewActivity::class.java)
-//                    createDateDialog()
+                    createDateDialog()
                 }
                 R.id.menu_search -> {
                     searchFragment?.onSearchClick()

@@ -9,6 +9,7 @@ import com.tanghong.commonlibrary.base.BaseActivity
 import com.tanghong.commonlibrary.utils.image.ImageUtils
 import com.tanghong.one.R
 import kotlinx.android.synthetic.main.activity_surface_view.*
+import kotlinx.android.synthetic.main.activity_user_info.*
 
 /**
  * <pre>
@@ -32,6 +33,14 @@ class SurfaceViewActivity : BaseActivity<SurfaceViewPresenter>(), SurfaceViewCon
     override fun layoutId(): Int = R.layout.activity_surface_view
 
     override fun initView() {
+        presenter.attachView(this)
+        toolbar.title = getString(R.string.title_surface_view)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
         paint = Paint()
         holder = sv.holder
         holder?.addCallback(object : SurfaceHolder.Callback {
@@ -92,5 +101,10 @@ class SurfaceViewActivity : BaseActivity<SurfaceViewPresenter>(), SurfaceViewCon
 
     override fun start() {
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.detachView()
     }
 }

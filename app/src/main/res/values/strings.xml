@@ -58,4 +58,5 @@
     <string name="setting_exit_login">退出登录</string>
     <string name="setting_app_version">版本号</string>
     <string name="setting_user_agreement">用户协议</string>
+    <string name="title_surface_view">SurfaceView</string>
 </resources>
