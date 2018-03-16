@@ -6,7 +6,6 @@ import android.graphics.Rect
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import com.tanghong.commonlibrary.base.BaseActivity
-import com.tanghong.commonlibrary.utils.image.ImageUtils
 import com.tanghong.one.R
 import kotlinx.android.synthetic.main.activity_surface_view.*
 import kotlinx.android.synthetic.main.activity_user_info.*
@@ -87,16 +86,10 @@ class SurfaceViewActivity : BaseActivity<SurfaceViewPresenter>(), SurfaceViewCon
             }
             false
         }
-
-        btn_load_image.setOnClickListener {
-            val url = "http://pic3.maimengjun.com/e25bda8dcb8570376467cb6b3a1bee65.jpg?imageView2/2/w/600/h/900"
-            ImageUtils().display(iv_load, url)
-        }
     }
 
     override fun initData() {
-        val url = "http://pic3.maimengjun.com/e25bda8dcb8570376467cb6b3a1bee65.jpg?imageView2/2/w/600/h/900"
-        ImageUtils().display(iv, url)
+
     }
 
     override fun start() {
