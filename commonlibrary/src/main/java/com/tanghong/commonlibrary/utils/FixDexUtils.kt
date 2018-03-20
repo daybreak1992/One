@@ -15,6 +15,10 @@ import java.lang.reflect.Array
  *     desc   :
  *     version: 1.0
  * </pre>
+ *
+ * BootClassLoader 是系统启动时创建的，一般不需要用到
+ * PathClassLoader 是应用启动时创建的，只能加载内部dex
+ * DexClassLoader 可以加载外部的dex
  */
 object FixDexUtils {
 

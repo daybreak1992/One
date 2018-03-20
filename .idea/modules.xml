@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/One.iml" filepath="$PROJECT_DIR$/One.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonlibrary/commonlibrary.iml" filepath="$PROJECT_DIR$/commonlibrary/commonlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oneplugin/oneplugin.iml" filepath="$PROJECT_DIR$/oneplugin/oneplugin.iml" />
     </modules>
   </component>
 </project>

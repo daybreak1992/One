@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.ext.plugin.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.tanghong.oneplugin"
+        minSdkVersion rootProject.ext.plugin.minSdkVersion
+        targetSdkVersion rootProject.ext.plugin.targetSdkVersion
+        versionCode rootProject.ext.plugin.versionCode
+        versionName rootProject.ext.plugin.versionName
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+apply plugin: 'replugin-plugin-gradle'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //v7
+    implementation rootProject.ext.supportLibs
+    //kotlin
+    implementation rootProject.ext.kotlinLibs
+    //replugin插件化
+    implementation rootProject.ext.repluginPlugin
+}

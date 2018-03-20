@@ -8,6 +8,15 @@ ext {
             versionName      : "1.0"
     ]
 
+    plugin = [
+            compileSdkVersion: 26,
+            buildToolsVersion: "27.0.3",
+            minSdkVersion    : 16,
+            targetSdkVersion : 26,
+            versionCode      : 1,
+            versionName      : "1.0"
+    ]
+
     kotlin = [
             kotlinVersion: '1.2.30',
             ankoVersion  : "0.10.4",
@@ -29,7 +38,9 @@ ext {
             banner            : "2.2.4",
             jsbridge          : "1.0.4",
             room              : "1.0.0",
-            constraintVersion : "1.0.2"
+            constraintVersion : "1.0.2",
+            repluginVersion   : "2.2.4",
+            multidexVersion   : "1.0.3"
     ]
 
     supportDeps = [
@@ -82,6 +93,9 @@ ext {
     roundImage = "com.makeramen:roundedimageview:$dependVersion.roundImage"
     banner = "cn.bingoogolapple:bga-banner:$dependVersion.banner@aar"
     jsbridge = "com.github.lzyzsd:jsbridge:$dependVersion.jsbridge"
+    repluginHost = "com.qihoo360.replugin:replugin-host-lib:$dependVersion.repluginVersion"
+    repluginPlugin = "com.qihoo360.replugin:replugin-plugin-lib:$dependVersion.repluginVersion"
+    multidex = "com.android.support:multidex:$dependVersion.multidexVersion"
 
     roomCompiler = "android.arch.persistence.room:compiler:$dependVersion.room"
 

@@ -1,8 +1,11 @@
 package com.tanghong.one.app
 
-import android.app.Application
 import android.content.Context
+import android.content.res.Configuration
+import android.support.multidex.MultiDex
 import android.util.Log
+import com.qihoo360.replugin.RePlugin
+import com.qihoo360.replugin.RePluginApplication
 import com.squareup.leakcanary.LeakCanary
 import com.tanghong.commonlibrary.utils.AppUtils
 import com.tanghong.commonlibrary.utils.RxUtils
@@ -21,7 +24,7 @@ import kotlin.properties.Delegates
  *     version: 1.0
  * </pre>
  */
-class App : Application() {
+class App : RePluginApplication() {
 
     companion object {
 
@@ -38,7 +41,8 @@ class App : Application() {
                 Flowable.just(user)
                         .map { t: User ->
                             DbHelper.getUserDao().delete(t)
-                        }.compose(RxUtils.composeIo())
+                        }
+                        .compose(RxUtils.composeIo())
                         .subscribeWith(object : ResourceSubscriber<Int>() {
                             override fun onComplete() {
                                 Log.i("main", "onComplete111 = $isDisposed")
@@ -66,7 +70,7 @@ class App : Application() {
         app = this
         appContext = applicationContext
         //初始化工具类
-        AppUtils.init(this)
+        AppUtils.init(appContext)
         //初始化数据库
         DbHelper.initDb(appContext)
         //初始化x5WebView
@@ -82,6 +86,30 @@ class App : Application() {
         })
         //初始化LeakCanary
         initLeakCanary()
+        //RePlugin插件化创建
+        RePlugin.App.onCreate()
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
+        //RePlugin插件化创建
+        RePlugin.App.attachBaseContext(this)
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        RePlugin.App.onLowMemory()
+    }
+
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        RePlugin.App.onTrimMemory(level)
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration?) {
+        super.onConfigurationChanged(newConfig)
+        RePlugin.App.onConfigurationChanged(newConfig)
     }
 
     fun initLeakCanary() {
