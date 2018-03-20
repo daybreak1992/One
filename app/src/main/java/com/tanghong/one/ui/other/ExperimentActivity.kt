@@ -1,11 +1,15 @@
 package com.tanghong.one.ui.other
 
-import android.os.AsyncTask
+import android.os.Environment
 import android.os.Handler
 import android.os.Message
 import com.tanghong.commonlibrary.base.BaseActivity
+import com.tanghong.commonlibrary.utils.FixDexUtils
 import com.tanghong.one.R
+import com.tanghong.one.repair.HotRepair
 import com.tanghong.one.service.AsyncThread
+import kotlinx.android.synthetic.main.activity_experiment.*
+import kotlinx.android.synthetic.main.activity_user_info.*
 
 /**
  * <pre>
@@ -25,10 +29,22 @@ class ExperimentActivity : BaseActivity<ExperimentPresenter>(), ExperimentContra
 
     override fun initView() {
         presenter.attachView(this)
+        toolbar.title = getString(R.string.title_experiment)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        toolbar.setNavigationOnClickListener { finish() }
+        btn1.setOnClickListener {
+            val hotRepair = HotRepair()
+            hotRepair.divide(this)
+        }
+        btn2.setOnClickListener {
+            FixDexUtils.loadFixedDex(this, Environment.getExternalStorageDirectory())
+        }
     }
 
     override fun initData() {
-        initHandlerThread()
+
     }
 
     private fun initHandlerThread() {
@@ -37,15 +53,7 @@ class ExperimentActivity : BaseActivity<ExperimentPresenter>(), ExperimentContra
     }
 
     override fun start() {
-        val task = object :AsyncTask<String, Int, Boolean>() {
 
-            override fun doInBackground(vararg params: String?): Boolean {
-                return false
-            }
-        }
-        task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "")
-
-        startForegroundService()
     }
 
     override fun onDestroy() {

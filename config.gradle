@@ -28,19 +28,21 @@ ext {
             roundImage        : "2.3.0",
             banner            : "2.2.4",
             jsbridge          : "1.0.4",
-            room              : "1.0.0"
+            room              : "1.0.0",
+            constraintVersion : "1.0.2"
     ]
 
     supportDeps = [
             //--------  support  -------
-            supportv4     : "com.android.support:support-v4:$dependVersion.androidSdkVersion",
-            appcompatv7   : "com.android.support:appcompat-v7:$dependVersion.androidSdkVersion",
-            recyclerview  : "com.android.support:recyclerview-v7:$dependVersion.androidSdkVersion",
-            cardview      : "com.android.support:cardview-v7:$dependVersion.androidSdkVersion",
-            palette       : "com.android.support:palette-v7:$dependVersion.androidSdkVersion",
-            design        : "com.android.support:design:$dependVersion.androidSdkVersion",
-            annotations   : "com.android.support:support-annotations:$dependVersion.androidSdkVersion",
-            vectordrawable: "com.android.support:support-vector-drawable:$dependVersion.androidSdkVersion"
+            supportv4       : "com.android.support:support-v4:$dependVersion.androidSdkVersion",
+            appcompatv7     : "com.android.support:appcompat-v7:$dependVersion.androidSdkVersion",
+            recyclerview    : "com.android.support:recyclerview-v7:$dependVersion.androidSdkVersion",
+            cardview        : "com.android.support:cardview-v7:$dependVersion.androidSdkVersion",
+            palette         : "com.android.support:palette-v7:$dependVersion.androidSdkVersion",
+            design          : "com.android.support:design:$dependVersion.androidSdkVersion",
+            annotations     : "com.android.support:support-annotations:$dependVersion.androidSdkVersion",
+            vectordrawable  : "com.android.support:support-vector-drawable:$dependVersion.androidSdkVersion",
+            constraintLayout: "com.android.support.constraint:constraint-layout:$dependVersion.constraintVersion"
     ]
 
     kotlinDeps = [

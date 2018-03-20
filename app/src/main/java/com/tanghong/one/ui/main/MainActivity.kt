@@ -1,5 +1,6 @@
 package com.tanghong.one.ui.main
 
+import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.support.design.widget.BottomNavigationView
@@ -27,6 +28,7 @@ import com.tanghong.one.app.App
 import com.tanghong.one.glide
 import com.tanghong.one.openPage
 import com.tanghong.one.ui.message.MessageFragment
+import com.tanghong.one.ui.other.ExperimentActivity
 import com.tanghong.one.ui.profile.LoginActivity
 import com.tanghong.one.ui.profile.SettingActivity
 import com.tanghong.one.ui.search.SearchFragment
@@ -79,6 +81,9 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
                 }
             }
             true
+        }
+        fab_jump.setOnClickListener {
+            startActivity(Intent(this, ExperimentActivity::class.java))
         }
     }
 

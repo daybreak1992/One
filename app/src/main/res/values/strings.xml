@@ -59,4 +59,5 @@
     <string name="setting_app_version">版本号</string>
     <string name="setting_user_agreement">用户协议</string>
     <string name="title_surface_view">SurfaceView</string>
+    <string name="title_experiment">测试</string>
 </resources>
