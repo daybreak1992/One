@@ -1,6 +1,7 @@
 package com.tanghong.commonlibrary.utils
 
 import android.content.Context
+import android.util.Log
 import dalvik.system.DexClassLoader
 import dalvik.system.PathClassLoader
 import java.io.File
@@ -17,6 +18,7 @@ import java.lang.reflect.Array
  */
 object FixDexUtils {
 
+    val TAG = "FixDex"
     val DEX_SUFFIX = ".dex"
     val APK_SUFFIX = ".apk"
     val JAR_SUFFIX = ".jar"
@@ -44,6 +46,7 @@ object FixDexUtils {
                             file.name.endsWith(APK_SUFFIX) ||
                             file.name.endsWith(JAR_SUFFIX) ||
                             file.name.endsWith(ZIP_SUFFIX))) {
+                Log.i(TAG, "dex path = ${file.absolutePath}")
                 loadedDex.add(file)
             }
         }
@@ -63,8 +66,11 @@ object FixDexUtils {
             val dexPathList = getPathList(dexLoader)
             val pathPathList = getPathList(pathLoader)
             val leftDexElements = getDexElements(dexPathList)
+            Log.i(TAG, "leftDexElements = ${JsonUtils.serializeToJson(leftDexElements)}")
             val rightDexElements = getDexElements(pathPathList)
+            Log.i(TAG, "rightDexElements = ${JsonUtils.serializeToJson(rightDexElements)}")
             val dexElements = combineArray(leftDexElements, rightDexElements)
+            Log.i(TAG, "dexElements = ${JsonUtils.serializeToJson(dexElements)}")
             val pathList = getPathList(pathLoader)
             setField(pathList, pathList::class.java, "dexElements", dexElements)
         }
