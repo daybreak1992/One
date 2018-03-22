@@ -4,9 +4,12 @@ import android.os.Environment
 import android.os.Handler
 import android.os.Message
 import android.util.Log
+import android.view.ViewGroup
 import com.qihoo360.replugin.RePlugin
+import com.scwang.smartrefresh.layout.util.DensityUtil
 import com.tanghong.commonlibrary.base.BaseActivity
 import com.tanghong.commonlibrary.utils.FixDexUtils
+import com.tanghong.commonlibrary.widget.SketchpadView
 import com.tanghong.one.R
 import com.tanghong.one.repair.HotRepair
 import com.tanghong.one.service.AsyncThread
@@ -57,13 +60,19 @@ class ExperimentActivity : BaseActivity<ExperimentPresenter>(), ExperimentContra
             }
         }
         tab2.setOnClickListener {
-//            val intent = Intent()
+            //            val intent = Intent()
 //            intent.setClassName("oneplugin", "com.tanghong.oneplugin.MainActivity")
 //            intent.component = ComponentName("oneplugin", "com.tanghong.oneplugin.MainActivity")
 //            startActivity(intent)
 
             RePlugin.startActivity(this, RePlugin.createIntent("com.tanghong.oneplugin",
                     "com.tanghong.oneplugin.MainActivity"))
+        }
+        tab3.setOnClickListener {
+            val sketchpadView: SketchpadView = SketchpadView(this)
+            val params = ViewGroup.LayoutParams(DensityUtil.dp2px(300f), DensityUtil.dp2px(300f))
+            sketchpadView.layoutParams = params
+            cl_container.addView(sketchpadView)
         }
     }
 

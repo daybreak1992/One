@@ -1,6 +1,6 @@
 ext {
     android = [
-            compileSdkVersion: 26,
+            compileSdkVersion: 27,
             buildToolsVersion: "27.0.3",
             minSdkVersion    : 16,
             targetSdkVersion : 26,
@@ -9,7 +9,7 @@ ext {
     ]
 
     plugin = [
-            compileSdkVersion: 26,
+            compileSdkVersion: 27,
             buildToolsVersion: "27.0.3",
             minSdkVersion    : 16,
             targetSdkVersion : 26,
@@ -24,7 +24,7 @@ ext {
     ]
 
     dependVersion = [
-            androidSdkVersion : "26.1.0",
+            androidSdkVersion : "27.0.2",
             retrofitSdkVersion: "2.3.0",
             glideSdkVersion   : "4.5.0",
             glideTransform    : "3.1.0",
