@@ -11,6 +11,7 @@ import org.jetbrains.anko.toast
  *     version: 1.0
  * </pre>
  */
+@DBTable("HotRepair")
 class HotRepair {
 
     fun divide(context: Context) {
