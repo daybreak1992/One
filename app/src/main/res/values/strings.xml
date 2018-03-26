@@ -28,6 +28,8 @@
     <string name="title_follow_list">TA的关注</string>
     <string name="title_illustration">图文</string>
     <string name="title_radio">电台</string>
+    <string name="title_surface_view">SurfaceView</string>
+    <string name="title_experiment">测试</string>
 
     <string name="prompt_exit_app">再按一次退出程序</string>
     <string name="prompt_hot_comment">(热门评论)</string>
@@ -40,6 +42,7 @@
     <string name="prompt_intput_account_length">请输入正确格式的账号</string>
     <string name="prompt_clear_success">清除成功</string>
     <string name="prompt_clear_fail">清除失败</string>
+    <string name="prompt_refresh_success">刷新成功</string>
 
     <string name="content_loading">加载中...</string>
     <string name="content_clear_cache">确定清除缓存？</string>
@@ -54,10 +57,9 @@
     <string name="title_login">登录</string>
     <string name="hint_phone">手机号码</string>
     <string name="hint_password">密码</string>
+
     <string name="setting_clear_cache">清除缓存</string>
     <string name="setting_exit_login">退出登录</string>
     <string name="setting_app_version">版本号</string>
     <string name="setting_user_agreement">用户协议</string>
-    <string name="title_surface_view">SurfaceView</string>
-    <string name="title_experiment">测试</string>
 </resources>

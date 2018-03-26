@@ -1,9 +1,9 @@
 package com.tanghong.one.ui.main
 
-import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.support.design.widget.BottomNavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -27,8 +27,9 @@ import com.tanghong.one.R
 import com.tanghong.one.app.App
 import com.tanghong.one.glide
 import com.tanghong.one.openPage
+import com.tanghong.one.repair.EntryReflect
+import com.tanghong.one.showSnackbar
 import com.tanghong.one.ui.message.MessageFragment
-import com.tanghong.one.ui.other.ExperimentActivity
 import com.tanghong.one.ui.profile.LoginActivity
 import com.tanghong.one.ui.profile.SettingActivity
 import com.tanghong.one.ui.search.SearchFragment
@@ -82,8 +83,9 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
             }
             true
         }
-        fab_jump.setOnClickListener {
-            startActivity(Intent(this, ExperimentActivity::class.java))
+        fab_jump.setOnClickListener { view ->
+            view.showSnackbar(getString(R.string.prompt_refresh_success), Snackbar.LENGTH_SHORT)
+//            startActivity(Intent(this, ExperimentActivity::class.java))
         }
     }
 
@@ -109,7 +111,9 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
     }
 
     override fun start() {
-
+//        EntryReflect.dealConstructors()
+//        EntryReflect.dealFields()
+        EntryReflect.dealMethods()
     }
 
     override fun onResume() {

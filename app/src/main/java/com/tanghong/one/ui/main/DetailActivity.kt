@@ -3,6 +3,7 @@ package com.tanghong.one.ui.main
 import android.graphics.PixelFormat
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.View
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -49,6 +50,7 @@ class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
         rv_detail.adapter = detailAdapter
         srl_detail.setRefreshHeader(ClassicsHeader(this))
         srl_detail.setRefreshFooter(ClassicsFooter(this))
+        btn_web.visibility = View.GONE
 
         toolbar.setNavigationOnClickListener {
             finish()
