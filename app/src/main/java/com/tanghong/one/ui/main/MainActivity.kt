@@ -1,5 +1,6 @@
 package com.tanghong.one.ui.main
 
+import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.support.design.widget.BottomNavigationView
@@ -27,9 +28,9 @@ import com.tanghong.one.R
 import com.tanghong.one.app.App
 import com.tanghong.one.glide
 import com.tanghong.one.openPage
-import com.tanghong.one.repair.EntryReflect
 import com.tanghong.one.showSnackbar
 import com.tanghong.one.ui.message.MessageFragment
+import com.tanghong.one.ui.other.ExperimentActivity
 import com.tanghong.one.ui.profile.LoginActivity
 import com.tanghong.one.ui.profile.SettingActivity
 import com.tanghong.one.ui.search.SearchFragment
@@ -85,7 +86,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
         }
         fab_jump.setOnClickListener { view ->
             view.showSnackbar(getString(R.string.prompt_refresh_success), Snackbar.LENGTH_SHORT)
-//            startActivity(Intent(this, ExperimentActivity::class.java))
+            startActivity(Intent(this, ExperimentActivity::class.java))
         }
     }
 
@@ -113,7 +114,9 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
     override fun start() {
 //        EntryReflect.dealConstructors()
 //        EntryReflect.dealFields()
-        EntryReflect.dealMethods()
+//        EntryReflect.dealMethods()
+//        val dataStore = DataStoreFactory.returnData(false)
+//        Log.i("factory", "dataStore = ${JsonUtils.serializeToJson(dataStore.returnData())}")
     }
 
     override fun onResume() {

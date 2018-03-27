@@ -26,4 +26,8 @@
         <attr name="cpv_outerSize" format="dimension" />
         <attr name="cpv_reachCapRound" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="CustomView">
+        <attr name="default_size" format="dimension" />
+    </declare-styleable>
 </resources>
