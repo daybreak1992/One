@@ -37,6 +37,12 @@ android {
     }
 }
 
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}
+
 // ATTENTION!!! Must be PLACED AFTER "android{}" to read the applicationId
 apply plugin: 'replugin-host-gradle'
 

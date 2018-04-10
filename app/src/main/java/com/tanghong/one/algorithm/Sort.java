@@ -1,5 +1,7 @@
 package com.tanghong.one.algorithm;
 
+import android.util.Log;
+
 /**
  * Created by tanghong on 2018/3/27.
  */
@@ -160,5 +162,15 @@ public class Sort {
 
     private static void swap(int[] args, int fromIndex, int toIndex) {
         args[fromIndex] = args[toIndex];
+    }
+
+    public static void logSort() {
+        int[] arr = {4, 8, 9, 2, 11, 5, 6};
+        exchangeSort(arr, 0, arr.length - 1);
+        StringBuilder sb = new StringBuilder();
+        for (int i : arr) {
+            sb.append("value = " + i + "\n");
+        }
+        Log.i("sort", "value = " + sb.toString());
     }
 }

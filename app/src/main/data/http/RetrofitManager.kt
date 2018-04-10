@@ -37,7 +37,7 @@ object RetrofitManager {
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
         }
-        return retrofit;
+        return retrofit
     }
 
     private fun creteClient(): OkHttpClient {

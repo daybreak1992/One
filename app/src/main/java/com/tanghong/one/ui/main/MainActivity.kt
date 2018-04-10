@@ -25,6 +25,7 @@ import com.bumptech.glide.request.target.Target
 import com.scwang.smartrefresh.layout.util.DensityUtil
 import com.tanghong.commonlibrary.base.BaseActivity
 import com.tanghong.one.R
+import com.tanghong.one.algorithm.Sort
 import com.tanghong.one.app.App
 import com.tanghong.one.glide
 import com.tanghong.one.openPage
@@ -117,6 +118,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainContract.View {
 //        EntryReflect.dealMethods()
 //        val dataStore = DataStoreFactory.returnData(false)
 //        Log.i("factory", "dataStore = ${JsonUtils.serializeToJson(dataStore.returnData())}")
+        Sort.logSort()
     }
 
     override fun onResume() {
