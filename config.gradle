@@ -24,7 +24,7 @@ ext {
     ]
 
     dependVersion = [
-            androidSdkVersion : "27.0.2",
+            androidSdkVersion : "27.1.1",
             retrofitSdkVersion: "2.3.0",
             glideSdkVersion   : "4.5.0",
             glideTransform    : "3.1.0",
